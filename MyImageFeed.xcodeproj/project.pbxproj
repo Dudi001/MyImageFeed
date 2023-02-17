@@ -42,6 +42,7 @@
 		D9BBDE6F29A026A60045A408 = {
 			isa = PBXGroup;
 			children = (
+				D9BBDE8F29A02A2A0045A408 /* .gitignore */,
 				D9BBDE7A29A026A60045A408 /* MyImageFeed */,
 				D9BBDE7929A026A60045A408 /* Products */,
 			);
@@ -65,7 +66,6 @@
 				D9BBDE8429A026A80045A408 /* Assets.xcassets */,
 				D9BBDE8629A026A80045A408 /* LaunchScreen.storyboard */,
 				D9BBDE8929A026A80045A408 /* Info.plist */,
-				D9BBDE8F29A02A2A0045A408 /* .gitignore */,
 			);
 			path = MyImageFeed;
 			sourceTree = "<group>";
