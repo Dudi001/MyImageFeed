@@ -16,8 +16,6 @@ class ImagesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    func configCell(for cell: ImagesListCell) { }
 
 }
 
@@ -41,7 +39,7 @@ extension ImagesListViewController: UITableViewDataSource {
         }
         
         //конфигурируем и возвращаем
-        configCell(for: imageListCell)
+        configCell(for: imageListCell, with: indexPath)
         return imageListCell
     }
     
@@ -53,4 +51,8 @@ extension ImagesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+}
+
+extension ImagesListViewController {
+    func configCell(for cell: ImagesListCell, with indexPath: IndexPath) { }
 }

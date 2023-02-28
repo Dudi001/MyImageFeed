@@ -14,7 +14,6 @@
 		D9BBDE8529A026A80045A408 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9BBDE8429A026A80045A408 /* Assets.xcassets */; };
 		D9BBDE8829A026A80045A408 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9BBDE8629A026A80045A408 /* LaunchScreen.storyboard */; };
 		D9BBDE9029A02A2A0045A408 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D9BBDE8F29A02A2A0045A408 /* .gitignore */; };
-		D9FE260B29A7CA4E00179141 /* mockImagesForTable in Resources */ = {isa = PBXBuildFile; fileRef = D9FE260A29A7CA4E00179141 /* mockImagesForTable */; };
 		D9FE260D29A8D15B00179141 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FE260C29A8D15B00179141 /* ImagesListCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +27,6 @@
 		D9BBDE8729A026A80045A408 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9BBDE8929A026A80045A408 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9BBDE8F29A02A2A0045A408 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D9FE260A29A7CA4E00179141 /* mockImagesForTable */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mockImagesForTable; sourceTree = "<group>"; };
 		D9FE260C29A8D15B00179141 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +68,6 @@
 				D9BBDE8429A026A80045A408 /* Assets.xcassets */,
 				D9BBDE8629A026A80045A408 /* LaunchScreen.storyboard */,
 				D9BBDE8929A026A80045A408 /* Info.plist */,
-				D9FE260A29A7CA4E00179141 /* mockImagesForTable */,
 			);
 			path = MyImageFeed;
 			sourceTree = "<group>";
@@ -142,7 +139,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9FE260B29A7CA4E00179141 /* mockImagesForTable in Resources */,
 				D9BBDE9029A02A2A0045A408 /* .gitignore in Resources */,
 				D9BBDE8829A026A80045A408 /* LaunchScreen.storyboard in Resources */,
 				D9BBDE8529A026A80045A408 /* Assets.xcassets in Resources */,
@@ -321,7 +317,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = manapov.m0996.MyImageFeed;
+				PRODUCT_BUNDLE_IDENTIFIER = manapov.m0996.MyImageFeed123123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -353,7 +349,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = manapov.m0996.MyImageFeed;
+				PRODUCT_BUNDLE_IDENTIFIER = manapov.m0996.MyImageFeed123123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
