@@ -53,13 +53,14 @@
                                             </subviews>
                                             <color key="backgroundColor" name="YPBackground"/>
                                             <constraints>
+                                                <constraint firstItem="ajJ-Nj-q2i" firstAttribute="right" relation="greaterThanOrEqual" secondItem="hbQ-Tj-Hjp" secondAttribute="right" constant="8" id="1ZL-53-Xya"/>
                                                 <constraint firstItem="bKY-Ms-OSh" firstAttribute="top" secondItem="ajJ-Nj-q2i" secondAttribute="top" id="B6R-tg-ubo"/>
                                                 <constraint firstItem="ajJ-Nj-q2i" firstAttribute="top" secondItem="aX4-Rt-hLp" secondAttribute="top" constant="4" id="Bzq-VF-UpA"/>
                                                 <constraint firstItem="hbQ-Tj-Hjp" firstAttribute="left" secondItem="ajJ-Nj-q2i" secondAttribute="left" constant="8" id="D3q-G4-OBp"/>
                                                 <constraint firstItem="bKY-Ms-OSh" firstAttribute="trailing" secondItem="ajJ-Nj-q2i" secondAttribute="trailing" id="J5y-U1-cGl"/>
                                                 <constraint firstItem="ajJ-Nj-q2i" firstAttribute="leading" secondItem="aX4-Rt-hLp" secondAttribute="leading" constant="16" id="MB5-lJ-Z2k"/>
                                                 <constraint firstAttribute="bottom" secondItem="ajJ-Nj-q2i" secondAttribute="bottom" constant="4" id="Nle-tj-6OF"/>
-                                                <constraint firstItem="bKY-Ms-OSh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ajJ-Nj-q2i" secondAttribute="leading" constant="20" symbolic="YES" id="Xfs-t0-GkN"/>
+                                                <constraint firstItem="bKY-Ms-OSh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ajJ-Nj-q2i" secondAttribute="leading" constant="8" id="Xfs-t0-GkN"/>
                                                 <constraint firstItem="ajJ-Nj-q2i" firstAttribute="bottom" secondItem="hbQ-Tj-Hjp" secondAttribute="bottom" constant="8" id="aZd-es-3ox"/>
                                                 <constraint firstAttribute="trailing" secondItem="ajJ-Nj-q2i" secondAttribute="trailing" constant="16" id="rJY-IY-4cj"/>
                                             </constraints>
