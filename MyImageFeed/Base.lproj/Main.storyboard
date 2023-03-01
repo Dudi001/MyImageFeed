@@ -66,6 +66,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="YPBackground"/>
+                                        <connections>
+                                            <outlet property="cellImage" destination="ajJ-Nj-q2i" id="Ei7-tU-RIO"/>
+                                            <outlet property="dateLabel" destination="hbQ-Tj-Hjp" id="Zub-qJ-urS"/>
+                                            <outlet property="likeButton" destination="bKY-Ms-OSh" id="1ho-yn-ad5"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -84,7 +89,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ImageList" destination="bth-2x-WWu" id="1aN-8B-hN4"/>
+                        <outlet property="tableView" destination="bth-2x-WWu" id="1aN-8B-hN4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
