@@ -13,7 +13,6 @@
 		D9BBDE8329A026A60045A408 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9BBDE8129A026A60045A408 /* Main.storyboard */; };
 		D9BBDE8529A026A80045A408 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9BBDE8429A026A80045A408 /* Assets.xcassets */; };
 		D9BBDE8829A026A80045A408 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9BBDE8629A026A80045A408 /* LaunchScreen.storyboard */; };
-		D9BBDE9029A02A2A0045A408 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D9BBDE8F29A02A2A0045A408 /* .gitignore */; };
 		D9FE260D29A8D15B00179141 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FE260C29A8D15B00179141 /* ImagesListCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -139,7 +138,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9BBDE9029A02A2A0045A408 /* .gitignore in Resources */,
 				D9BBDE8829A026A80045A408 /* LaunchScreen.storyboard in Resources */,
 				D9BBDE8529A026A80045A408 /* Assets.xcassets in Resources */,
 				D9BBDE8329A026A60045A408 /* Main.storyboard in Resources */,
@@ -309,6 +307,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -341,6 +340,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

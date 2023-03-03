@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
 
     @IBOutlet private var tableView: UITableView!
     
@@ -49,7 +49,8 @@ extension ImagesListViewController: UITableViewDataSource {
         let image = UIImage(named: photosName[indexPath.row])
         let date = dateFormatter.string(from: Date())
         let isLiked = indexPath.row % 2 == 0
-
+        cell.selectionStyle = .none
+        
         imageListCell.configCell(image: image, date: date, isLiked: isLiked)
         
         return imageListCell
@@ -74,4 +75,4 @@ extension ImagesListViewController: UITableViewDelegate {
         return cellHeight
     }
 }
-//Случайно все измеения в main ветке. Сори)
+
