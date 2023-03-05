@@ -45,7 +45,7 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 september 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbQ-Tj-Hjp" userLabel="Date label">
-                                                    <rect key="frame" x="24" y="181.33333333333334" width="120" height="15.666666666666657"/>
+                                                    <rect key="frame" x="24" y="181" width="120" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" name="YPWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -96,10 +96,85 @@
             </objects>
             <point key="canvasLocation" x="26.717557251908396" y="4.9295774647887329"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="gAE-UB-3Wh">
+            <objects>
+                <viewController id="YR1-R3-D2d" customClass="ProfileViewController" customModule="MyImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ztu-K9-AyP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_image" translatesAutoresizingMaskIntoConstraints="NO" id="CeP-aY-vmQ">
+                                <rect key="frame" x="16" y="91" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="Tx5-h1-GcM"/>
+                                    <constraint firstAttribute="height" constant="70" id="biK-Aj-bYJ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="61"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRm-A8-spZ" userLabel="logout_button">
+                                <rect key="frame" x="347" y="114" width="20" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="uJ4-Hw-qcr"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="logout_image"/>
+                                <buttonConfiguration key="configuration" style="plain" image="logout_button"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@manapov_m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PB-qD-01L">
+                                <rect key="frame" x="16" y="205" width="361" height="15.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Манапов Мурад" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89Z-8U-Ch2">
+                                <rect key="frame" x="16" y="169" width="361" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello world!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3o-rL-oKv">
+                                <rect key="frame" x="16" y="228.66666666666666" width="361" height="15.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bmi-gz-hlI"/>
+                        <color key="backgroundColor" name="YPBlack"/>
+                        <constraints>
+                            <constraint firstItem="xRm-A8-spZ" firstAttribute="top" secondItem="Bmi-gz-hlI" secondAttribute="top" constant="55" id="3k8-w7-N0T"/>
+                            <constraint firstItem="0PB-qD-01L" firstAttribute="trailing" secondItem="89Z-8U-Ch2" secondAttribute="trailing" id="9Sk-1R-ftc"/>
+                            <constraint firstItem="u3o-rL-oKv" firstAttribute="leading" secondItem="0PB-qD-01L" secondAttribute="leading" id="K03-oO-8H3"/>
+                            <constraint firstItem="89Z-8U-Ch2" firstAttribute="top" secondItem="CeP-aY-vmQ" secondAttribute="bottom" constant="8" id="NQ4-Jf-7l7"/>
+                            <constraint firstItem="CeP-aY-vmQ" firstAttribute="leading" secondItem="Bmi-gz-hlI" secondAttribute="leading" constant="16" id="PXV-St-P9O"/>
+                            <constraint firstItem="u3o-rL-oKv" firstAttribute="trailing" secondItem="0PB-qD-01L" secondAttribute="trailing" id="X79-N0-nKA"/>
+                            <constraint firstItem="CeP-aY-vmQ" firstAttribute="top" secondItem="Bmi-gz-hlI" secondAttribute="top" constant="32" id="Zoc-UG-fWd"/>
+                            <constraint firstItem="0PB-qD-01L" firstAttribute="top" secondItem="89Z-8U-Ch2" secondAttribute="bottom" constant="8" id="cT7-yY-7Sz"/>
+                            <constraint firstItem="Bmi-gz-hlI" firstAttribute="trailing" secondItem="0PB-qD-01L" secondAttribute="trailing" constant="16" id="dXf-rw-Dyh"/>
+                            <constraint firstItem="0PB-qD-01L" firstAttribute="leading" secondItem="89Z-8U-Ch2" secondAttribute="leading" id="hnH-rL-XDA"/>
+                            <constraint firstItem="u3o-rL-oKv" firstAttribute="top" secondItem="0PB-qD-01L" secondAttribute="bottom" constant="8" id="jSw-Ov-KgE"/>
+                            <constraint firstItem="Bmi-gz-hlI" firstAttribute="trailing" secondItem="xRm-A8-spZ" secondAttribute="trailing" constant="26" id="k7f-cU-dWx"/>
+                            <constraint firstItem="xRm-A8-spZ" firstAttribute="left" relation="greaterThanOrEqual" secondItem="CeP-aY-vmQ" secondAttribute="right" id="qQA-sT-jOv"/>
+                            <constraint firstItem="0PB-qD-01L" firstAttribute="leading" secondItem="Bmi-gz-hlI" secondAttribute="leading" constant="16" id="qud-Fz-Fmh"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pm8-6A-VCu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="26.717557251908396" y="-905.63380281690149"/>
+        </scene>
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
         <image name="ActiveLike" width="42" height="42"/>
+        <image name="logout_button" width="20" height="22"/>
+        <image name="logout_image" width="6.6666665077209473" height="7.3333334922790527"/>
+        <image name="profile_image" width="23.333333969116211" height="23.333333969116211"/>
         <namedColor name="Color">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
