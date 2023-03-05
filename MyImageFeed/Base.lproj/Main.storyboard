@@ -117,13 +117,16 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRm-A8-spZ" userLabel="logout_button">
-                                <rect key="frame" x="347" y="114" width="20" height="36"/>
+                                <rect key="frame" x="357" y="114" width="20" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="uJ4-Hw-qcr"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="logout_image"/>
                                 <buttonConfiguration key="configuration" style="plain" image="logout_button"/>
+                                <connections>
+                                    <action selector="didTapLogoutButton" destination="YR1-R3-D2d" eventType="touchUpInside" id="XXa-p4-Vps"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@manapov_m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PB-qD-01L">
                                 <rect key="frame" x="16" y="205" width="361" height="15.666666666666657"/>
@@ -158,11 +161,18 @@
                             <constraint firstItem="Bmi-gz-hlI" firstAttribute="trailing" secondItem="0PB-qD-01L" secondAttribute="trailing" constant="16" id="dXf-rw-Dyh"/>
                             <constraint firstItem="0PB-qD-01L" firstAttribute="leading" secondItem="89Z-8U-Ch2" secondAttribute="leading" id="hnH-rL-XDA"/>
                             <constraint firstItem="u3o-rL-oKv" firstAttribute="top" secondItem="0PB-qD-01L" secondAttribute="bottom" constant="8" id="jSw-Ov-KgE"/>
-                            <constraint firstItem="Bmi-gz-hlI" firstAttribute="trailing" secondItem="xRm-A8-spZ" secondAttribute="trailing" constant="26" id="k7f-cU-dWx"/>
+                            <constraint firstItem="Bmi-gz-hlI" firstAttribute="trailing" secondItem="xRm-A8-spZ" secondAttribute="trailing" constant="16" id="k7f-cU-dWx"/>
                             <constraint firstItem="xRm-A8-spZ" firstAttribute="left" relation="greaterThanOrEqual" secondItem="CeP-aY-vmQ" secondAttribute="right" id="qQA-sT-jOv"/>
                             <constraint firstItem="0PB-qD-01L" firstAttribute="leading" secondItem="Bmi-gz-hlI" secondAttribute="leading" constant="16" id="qud-Fz-Fmh"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="avatarImageView" destination="CeP-aY-vmQ" id="DHT-9L-eiU"/>
+                        <outlet property="descriptionLabel" destination="u3o-rL-oKv" id="AMR-r4-A05"/>
+                        <outlet property="loginLabel" destination="0PB-qD-01L" id="eM6-Uh-hdo"/>
+                        <outlet property="logoutButton" destination="xRm-A8-spZ" id="xPJ-St-RBW"/>
+                        <outlet property="nameLabel" destination="89Z-8U-Ch2" id="7z9-0M-Qgq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pm8-6A-VCu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
