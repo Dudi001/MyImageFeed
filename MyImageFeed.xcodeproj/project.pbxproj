@@ -14,6 +14,7 @@
 		D9BBDE8329A026A60045A408 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9BBDE8129A026A60045A408 /* Main.storyboard */; };
 		D9BBDE8529A026A80045A408 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9BBDE8429A026A80045A408 /* Assets.xcassets */; };
 		D9BBDE8829A026A80045A408 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9BBDE8629A026A80045A408 /* LaunchScreen.storyboard */; };
+		D9D0B49E29B791D600DBC784 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D0B49D29B791D600DBC784 /* SingleImageViewController.swift */; };
 		D9FE260D29A8D15B00179141 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FE260C29A8D15B00179141 /* ImagesListCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		D9BBDE8729A026A80045A408 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9BBDE8929A026A80045A408 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9BBDE8F29A02A2A0045A408 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D9D0B49D29B791D600DBC784 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		D9FE260C29A8D15B00179141 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 				D9BBDE8429A026A80045A408 /* Assets.xcassets */,
 				D9BBDE8629A026A80045A408 /* LaunchScreen.storyboard */,
 				D9BBDE8929A026A80045A408 /* Info.plist */,
+				D9D0B49D29B791D600DBC784 /* SingleImageViewController.swift */,
 			);
 			path = MyImageFeed;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 				D9FE260D29A8D15B00179141 /* ImagesListCell.swift in Sources */,
 				D9B77ECF29B3C832002E4BEB /* ProfileViewController.swift in Sources */,
 				D9BBDE7C29A026A60045A408 /* AppDelegate.swift in Sources */,
+				D9D0B49E29B791D600DBC784 /* SingleImageViewController.swift in Sources */,
 				D9BBDE7E29A026A60045A408 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
