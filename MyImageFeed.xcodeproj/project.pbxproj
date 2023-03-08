@@ -44,6 +44,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D91E7EB629B7998C0039712E /* SingleImageView */ = {
+			isa = PBXGroup;
+			children = (
+				D9D0B49D29B791D600DBC784 /* SingleImageViewController.swift */,
+			);
+			path = SingleImageView;
+			sourceTree = "<group>";
+		};
 		D9B77ED029B4F27D002E4BEB /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +80,7 @@
 		D9BBDE7A29A026A60045A408 /* MyImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				D91E7EB629B7998C0039712E /* SingleImageView */,
 				D9B77ED029B4F27D002E4BEB /* Profile */,
 				D9FE260F29A8D1FC00179141 /* ImageList */,
 				D9BBDE7B29A026A60045A408 /* AppDelegate.swift */,
@@ -80,7 +89,6 @@
 				D9BBDE8429A026A80045A408 /* Assets.xcassets */,
 				D9BBDE8629A026A80045A408 /* LaunchScreen.storyboard */,
 				D9BBDE8929A026A80045A408 /* Info.plist */,
-				D9D0B49D29B791D600DBC784 /* SingleImageViewController.swift */,
 			);
 			path = MyImageFeed;
 			sourceTree = "<group>";

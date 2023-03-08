@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SiU-qc-pLn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jov-h5-6Pu">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -91,6 +91,7 @@
                     <navigationItem key="navigationItem" id="Gdk-GE-lxf"/>
                     <connections>
                         <outlet property="tableView" destination="bth-2x-WWu" id="1aN-8B-hN4"/>
+                        <segue destination="SiU-qc-pLn" kind="show" identifier="ShowSingleImage" id="YA8-D9-DOq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -234,7 +235,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="11" translatesAutoresizingMaskIntoConstraints="NO" id="Ias-hi-Hzt">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ttb-Nj-ZOJ"/>
@@ -248,7 +249,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fqD-zY-J1n"/>
                     <connections>
-                        <outlet property="ImageView" destination="Ias-hi-Hzt" id="nQM-ee-Tee"/>
+                        <outlet property="imageView" destination="Ias-hi-Hzt" id="nQM-ee-Tee"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ax1-ok-608" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
