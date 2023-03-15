@@ -237,15 +237,15 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xWP-94-9qI">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ias-hi-Hzt">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="134"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ias-hi-Hzt">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="132"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Ias-hi-Hzt" firstAttribute="top" secondItem="xWP-94-9qI" secondAttribute="top" id="FVG-oe-yzt"/>
-                                    <constraint firstItem="Ias-hi-Hzt" firstAttribute="leading" secondItem="xWP-94-9qI" secondAttribute="leading" id="Hxi-FA-OfZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ias-hi-Hzt" secondAttribute="trailing" id="NdE-fa-huw"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ias-hi-Hzt" secondAttribute="bottom" id="nhH-f5-jCO"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ias-hi-Hzt" secondAttribute="bottom" id="Bm4-b9-hfR"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ias-hi-Hzt" secondAttribute="trailing" id="V7m-i1-KJW"/>
+                                    <constraint firstItem="Ias-hi-Hzt" firstAttribute="leading" secondItem="xWP-94-9qI" secondAttribute="leading" id="gZN-56-20k"/>
+                                    <constraint firstItem="Ias-hi-Hzt" firstAttribute="top" secondItem="xWP-94-9qI" secondAttribute="top" id="l7k-M8-3gO"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="XIx-8U-nKp"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="VGu-Tz-Y8p"/>
@@ -300,7 +300,6 @@
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
-        <image name="17" width="200" height="134"/>
         <image name="ActiveLike" width="42" height="42"/>
         <image name="chevron.backward" width="9" height="16"/>
         <image name="logout_button" width="20" height="22"/>
