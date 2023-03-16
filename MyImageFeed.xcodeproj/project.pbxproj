@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D958EC4329C313940030CD81 /* Resourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958EC4229C313940030CD81 /* Resourses.swift */; };
+		D958EC4529C374960030CD81 /* UIviewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958EC4429C374960030CD81 /* UIviewExt.swift */; };
 		D9B77ECF29B3C832002E4BEB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B77ECE29B3C832002E4BEB /* ProfileViewController.swift */; };
 		D9BBDE7C29A026A60045A408 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BBDE7B29A026A60045A408 /* AppDelegate.swift */; };
 		D9BBDE7E29A026A60045A408 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BBDE7D29A026A60045A408 /* SceneDelegate.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		D958EC4229C313940030CD81 /* Resourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resourses.swift; sourceTree = "<group>"; };
+		D958EC4429C374960030CD81 /* UIviewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIviewExt.swift; sourceTree = "<group>"; };
 		D9B77ECE29B3C832002E4BEB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D9BBDE7829A026A60045A408 /* MyImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9BBDE7B29A026A60045A408 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				D958EC4229C313940030CD81 /* Resourses.swift */,
+				D958EC4429C374960030CD81 /* UIviewExt.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				D9FE260D29A8D15B00179141 /* ImagesListCell.swift in Sources */,
 				D958EC4329C313940030CD81 /* Resourses.swift in Sources */,
 				D9B77ECF29B3C832002E4BEB /* ProfileViewController.swift in Sources */,
+				D958EC4529C374960030CD81 /* UIviewExt.swift in Sources */,
 				D9BBDE7C29A026A60045A408 /* AppDelegate.swift in Sources */,
 				D9D0B49E29B791D600DBC784 /* SingleImageViewController.swift in Sources */,
 				D9BBDE7E29A026A60045A408 /* SceneDelegate.swift in Sources */,

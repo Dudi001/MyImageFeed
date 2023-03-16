@@ -16,6 +16,8 @@ final class ProfileViewController: UIViewController {
     
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        addViews()
         setupAvatarImageView()
         setupNameLabel()
         setupLoginLabel()
@@ -24,12 +26,15 @@ final class ProfileViewController: UIViewController {
     }
     
     
+    private func addViews() {
+        let listViews = [avatarImageView, nameLabel, loginLabel, descriptionLabel, logoutButton]
+        listViews.forEach{self.view.setupView($0) }
+    }
+    
     private func setupAvatarImageView() {
-        view.addSubview(avatarImageView)
-        
-        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        avatarImageView.image = Resourses.Images.Profile.defaultAvatar
-        avatarImageView.layer.cornerRadius = 61
+        avatarImageView.image = Resourses.Images.Profile.mockPhoto
+        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.cornerRadius = 32
 
         
         NSLayoutConstraint.activate([
@@ -41,9 +46,6 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupNameLabel() {
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(nameLabel)
-        
         nameLabel.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         nameLabel.text = Resourses.Strings.Profile.name
         nameLabel.textColor = .white
@@ -55,9 +57,6 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupLoginLabel() {
-        loginLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(loginLabel)
-        
         loginLabel.font = UIFont.systemFont(ofSize: 13)
         loginLabel.text = Resourses.Strings.Profile.nickname
         loginLabel.textColor = .white
@@ -69,9 +68,6 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupDescriptionLabel() {
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(descriptionLabel)
-        
         descriptionLabel.font = UIFont.systemFont(ofSize: 13)
         descriptionLabel.text = Resourses.Strings.Profile.description
         descriptionLabel.textColor = .white
@@ -83,16 +79,12 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupLogoutButton() {
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(logoutButton)
-        
         logoutButton.setImage(Resourses.Images.Profile.logOut, for: .normal)
         
         NSLayoutConstraint.activate([
             logoutButton.heightAnchor.constraint(equalToConstant: 22),
             logoutButton.widthAnchor.constraint(equalToConstant: 20),
             logoutButton.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
-//            logoutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 55),
             logoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26)
         ])
     }
