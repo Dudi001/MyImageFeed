@@ -8,8 +8,8 @@
 
 import UIKit
 
+
 final class SplashViewController: UIViewController {
-    private let ShowAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     
     private let oauth2Service = OAuth2Service()
     private let oauth2TokenStorage = OAuth2TokenStorage()
@@ -19,7 +19,7 @@ final class SplashViewController: UIViewController {
         if let _ = oauth2TokenStorage.token {
             switchToTabBarController()
         } else {
-            performSegue(withIdentifier: ShowAuthenticationScreenSegueIdentifier, sender: nil)
+            performSegue(withIdentifier: SegueIdentifier.showAuthenticationScreenSegueIdentifier, sender: nil)
         }
     }
     
@@ -27,7 +27,7 @@ final class SplashViewController: UIViewController {
         super.viewWillAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
     }
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
@@ -38,18 +38,18 @@ final class SplashViewController: UIViewController {
             .instantiateViewController(withIdentifier: "TabBarViewController")
         window.rootViewController = tabBarController
     }
-    
 }
 
 
+//MARK: Segue
 extension SplashViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ShowAuthenticationScreenSegueIdentifier {
+        if segue.identifier == SegueIdentifier.showAuthenticationScreenSegueIdentifier {
             guard
                 let navigationController = segue.destination as? UINavigationController,
                 let viewController = navigationController.viewControllers[0] as? AuthViewController
             else {
-                fatalError("Failed to prepare for \(ShowAuthenticationScreenSegueIdentifier)")
+                fatalError("Failed to prepare for \(SegueIdentifier.showAuthenticationScreenSegueIdentifier)")
             }
             viewController.delegate = self
         } else {
@@ -59,6 +59,7 @@ extension SplashViewController {
 }
 
 
+//MARK: AuthDelegate
 extension SplashViewController: AuthViewDelegate {
     func authViewcontroller(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
         dismiss(animated: true) { [weak self] in

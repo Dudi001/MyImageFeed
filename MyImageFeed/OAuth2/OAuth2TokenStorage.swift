@@ -11,7 +11,7 @@ import Foundation
 final class OAuth2TokenStorage {
     
     private var authToken: String = ""
-
+    
     var token: String? {
         get {
             return UserDefaults.standard.string(forKey: authToken)
@@ -20,8 +20,4 @@ final class OAuth2TokenStorage {
             UserDefaults.standard.set(newValue, forKey: authToken)
         }
     }
-
-    func deleteToken() {
-        UserDefaults.standard.removeObject(forKey: authToken)
-        }
 }

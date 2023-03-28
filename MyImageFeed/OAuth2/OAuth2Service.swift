@@ -11,10 +11,13 @@ import Foundation
 typealias OAuthTokenResponseResult = Result<OAuthTokenResponseBody, Error>
 typealias OAuthTokenResponseHandler = (OAuthTokenResponseResult) -> Void
 
+
 final class OAuth2Service {
     
     static let shared = OAuth2Service()
+    
     private let urlSession = URLSession.shared
+    
     private (set) var authToken: String? {
         get {
             return OAuth2TokenStorage().token
@@ -23,6 +26,7 @@ final class OAuth2Service {
             OAuth2TokenStorage().token = newValue
         }
     }
+    
     
     private func authTokenRequest(code: String) -> URLRequest {
         URLRequest.makeHTTPRequest(
@@ -60,24 +64,24 @@ final class OAuth2Service {
             
             urlSession.dataTask(
                 with: request) {data, response, error in
-                guard
-                    let data = data,
-                    let response = response as? HTTPURLResponse,
-                    response.statusCode > 200 || response.statusCode <= 300 else {
-                    print("url response status code within (200, 300]: \(#function), line: \(#line)")
-                    return
-                }
+                    guard
+                        let data = data,
+                        let response = response as? HTTPURLResponse,
+                        response.statusCode > 200 || response.statusCode <= 300 else {
+                        print("url response status code within (200, 300]: \(#function), line: \(#line)")
+                        return
+                    }
                     
-                do {
-                    let responseBody = try JSONDecoder().decode(
-                        OAuthTokenResponseBody.self,
-                        from: data)
-                    OAuth2TokenStorage().token = responseBody.accessToken
-                    mainThread(.success(responseBody.accessToken))
-                } catch {
-                    mainThread(.failure(error))
-                }
-            }.resume()
+                    do {
+                        let responseBody = try JSONDecoder().decode(
+                            OAuthTokenResponseBody.self,
+                            from: data)
+                        OAuth2TokenStorage().token = responseBody.accessToken
+                        mainThread(.success(responseBody.accessToken))
+                    } catch {
+                        mainThread(.failure(error))
+                    }
+                }.resume()
         }
 }
 
@@ -95,4 +99,3 @@ extension URLRequest {
         return request
     }
 }
-
