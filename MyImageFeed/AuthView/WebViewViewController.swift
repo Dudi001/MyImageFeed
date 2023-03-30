@@ -23,7 +23,7 @@ final class WebViewViewController: UIViewController {
     weak var delegate: WebViewViewControllerDelegate?
     
     override func viewDidLoad() {
-        var urlComponents = URLComponents(string: "https://unsplash.com/oauth/authorize")!
+        var urlComponents = UnsplashParam.authorizeURL
         
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: UnsplashParam.accessKey),
@@ -42,6 +42,7 @@ final class WebViewViewController: UIViewController {
     }
     
     @IBAction private func didTapBackButton(_ sender: Any?) {
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

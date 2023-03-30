@@ -18,16 +18,6 @@ final class OAuth2Service {
     
     private let urlSession = URLSession.shared
     
-    private (set) var authToken: String? {
-        get {
-            return OAuth2TokenStorage().token
-        }
-        set {
-            OAuth2TokenStorage().token = newValue
-        }
-    }
-    
-    
     private func authTokenRequest(code: String) -> URLRequest {
         URLRequest.makeHTTPRequest(
             path: "/oauth/token"
@@ -37,7 +27,7 @@ final class OAuth2Service {
             + "&&code=\(code)"
             + "&&grant_type=authorization_code",
             httpMethod: "POST",
-            baseURL: URL(string: "https://unsplash.com")!
+            baseURL: UnsplashParam.defaultBaseURL
         )
     }
     
@@ -67,9 +57,9 @@ final class OAuth2Service {
                     guard
                         let data = data,
                         let response = response as? HTTPURLResponse,
-                        response.statusCode > 200 || response.statusCode <= 300 else {
-                        print("url response status code within (200, 300]: \(#function), line: \(#line)")
-                        return
+                        response.statusCode > 200 || response.statusCode <= 300
+                    else {
+                        return assertionFailure("url response status code within (200, 300]: \(#function), line: \(#line)")
                     }
                     
                     do {
