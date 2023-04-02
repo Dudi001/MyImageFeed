@@ -23,7 +23,7 @@ final class WebViewViewController: UIViewController {
     weak var delegate: WebViewViewControllerDelegate?
     
     override func viewDidLoad() {
-        var urlComponents = UnsplashParam.authorizeURL
+        var urlComponents = URLComponents(string: "https://unsplash.com/oauth/authorize")!
         
         urlComponents.queryItems = [
             URLQueryItem(name: "client_id", value: UnsplashParam.accessKey),

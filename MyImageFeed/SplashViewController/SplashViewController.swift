@@ -77,8 +77,8 @@ extension SplashViewController: AuthViewDelegate {
                 case .success:
                     self.switchToTabBarController()
                 case .failure:
-                    return assertionFailure("failed to get token")
-                    break
+//                    return assertionFailure("failed to get token")
+                    print("Problem with token")
                 }
             }
         }

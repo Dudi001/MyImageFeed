@@ -27,7 +27,7 @@ final class OAuth2Service {
             + "&&code=\(code)"
             + "&&grant_type=authorization_code",
             httpMethod: "POST",
-            baseURL: UnsplashParam.defaultBaseURL
+            baseURL: URL(string: "https://unsplash.com")!
         )
     }
     
@@ -67,6 +67,7 @@ final class OAuth2Service {
                             OAuthTokenResponseBody.self,
                             from: data)
                         OAuth2TokenStorage().token = responseBody.accessToken
+                        print("THIS IS TOKEN \(responseBody.accessToken)")
                         mainThread(.success(responseBody.accessToken))
                     } catch {
                         mainThread(.failure(error))
