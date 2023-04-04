@@ -10,16 +10,20 @@ import UIKit
 import ProgressHUD
 
 final class SplashViewController: UIViewController {
+    private var isFirstAppear = true
     
     private let oauth2Service = OAuth2Service()
     private let oauth2TokenStorage = OAuth2TokenStorage()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let _ = oauth2TokenStorage.token {
-            switchToTabBarController()
-        } else {
-            performSegue(withIdentifier: SegueIdentifier.showAuthenticationScreenSegueIdentifier, sender: nil)
+        if isFirstAppear {
+            if let _ = oauth2TokenStorage.token {
+                switchToTabBarController()
+            } else {
+                performSegue(withIdentifier: SegueIdentifier.showAuthenticationScreenSegueIdentifier, sender: nil)
+                isFirstAppear = false
+            }
         }
     }
     
@@ -62,7 +66,7 @@ extension SplashViewController {
 //MARK: AuthDelegate
 extension SplashViewController: AuthViewDelegate {
     func authViewcontroller(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
-        ProgressHUD.show()
+        UIBlockingProgressHUD.show()
         dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
             self.fetchOAuthToken(code)
@@ -76,10 +80,10 @@ extension SplashViewController: AuthViewDelegate {
             DispatchQueue.main.async {
                 switch result {
                 case .success:
-                    ProgressHUD.dismiss()
+                    UIBlockingProgressHUD.dismiss()
                     self.switchToTabBarController()
                 case .failure:
-                    ProgressHUD.dismiss()
+                    UIBlockingProgressHUD.dismiss()
                     return assertionFailure("failed to get token")
                     
                 }

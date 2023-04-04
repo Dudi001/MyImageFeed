@@ -14,9 +14,12 @@ typealias OAuthTokenResponseHandler = (OAuthTokenResponseResult) -> Void
 
 final class OAuth2Service {
     
+    
     static let shared = OAuth2Service()
     
     private let urlSession = URLSession.shared
+    private var lastCode: String?
+    private var task: URLSessionTask?
     
     private func authTokenRequest(code: String) -> URLRequest {
         URLRequest.makeHTTPRequest(
@@ -49,6 +52,11 @@ final class OAuth2Service {
                     completion(result)
                 }
             }
+            assert(Thread.isMainThread)
+            if lastCode == code { return }
+            task?.cancel()
+            lastCode = code
+            
             
             let request = authTokenRequest(code: code)
             
@@ -71,6 +79,10 @@ final class OAuth2Service {
                         mainThread(.success(responseBody.accessToken))
                     } catch {
                         mainThread(.failure(error))
+                    }
+                    self.task = nil
+                    if error != nil {
+                        self.lastCode = nil
                     }
                 }.resume()
         }
