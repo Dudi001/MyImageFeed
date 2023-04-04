@@ -7,7 +7,7 @@
 
 
 import UIKit
-
+import ProgressHUD
 
 final class SplashViewController: UIViewController {
     
@@ -62,6 +62,7 @@ extension SplashViewController {
 //MARK: AuthDelegate
 extension SplashViewController: AuthViewDelegate {
     func authViewcontroller(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
+        ProgressHUD.show()
         dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
             self.fetchOAuthToken(code)
@@ -75,10 +76,12 @@ extension SplashViewController: AuthViewDelegate {
             DispatchQueue.main.async {
                 switch result {
                 case .success:
+                    ProgressHUD.dismiss()
                     self.switchToTabBarController()
                 case .failure:
-//                    return assertionFailure("failed to get token")
-                    print("Problem with token")
+                    ProgressHUD.dismiss()
+                    return assertionFailure("failed to get token")
+                    
                 }
             }
         }
