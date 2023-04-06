@@ -45,13 +45,8 @@ final class OAuth2Service {
     
     func fetchOAuthToken(
         _ code: String,
-        completion: @escaping (Result<String, Error>) -> Void) {
+        completion: @escaping OAuthTokenResponseHandler ) {
             
-            let mainThread: (Result<String, Error>) -> Void = { result in
-                DispatchQueue.main.async {
-                    completion(result)
-                }
-            }
             assert(Thread.isMainThread)
             if lastCode == code { return }
             task?.cancel()
@@ -60,43 +55,29 @@ final class OAuth2Service {
             
             let request = authTokenRequest(code: code)
             
-            urlSession.dataTask(
-                with: request) {data, response, error in
-                    guard
-                        let data = data,
-                        let response = response as? HTTPURLResponse,
-                        response.statusCode > 200 || response.statusCode <= 300
-                    else {
-                        return assertionFailure("url response status code within (200, 300]: \(#function), line: \(#line)")
-                    }
-                    
-                    do {
-                        let responseBody = try JSONDecoder().decode(
-                            OAuthTokenResponseBody.self,
-                            from: data)
-                        OAuth2TokenStorage().token = responseBody.accessToken
-                        print("THIS IS TOKEN \(responseBody.accessToken)")
-                        mainThread(.success(responseBody.accessToken))
-                    } catch {
-                        mainThread(.failure(error))
-                    }
+            let task = urlSession.objectTask(for: request) { (result: OAuthTokenResponseResult) in
+                switch result {
+                case.success(let responseBody):
+                    completion(.success(responseBody))
                     self.task = nil
-                    if error != nil {
-                        self.lastCode = nil
-                    }
-                }.resume()
+                case .failure(let error):
+                    completion(.failure(error))
+                    self.lastCode = nil
+                }
+            }
+            self.task = task
+            task.resume()
         }
+    
 }
-
-
-// MARK: - HTTP Request
+    // MARK: - HTTP Request
 extension URLRequest {
     static func makeHTTPRequest(
         path: String,
         httpMethod: String,
         baseURL: URL = UnsplashParam.defaultBaseURL
     ) -> URLRequest {
-        
+            
         var request = URLRequest(url: URL(string: path, relativeTo: baseURL)!)
         request.httpMethod = httpMethod
         return request
