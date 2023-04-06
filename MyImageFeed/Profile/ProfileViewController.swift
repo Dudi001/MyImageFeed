@@ -13,6 +13,8 @@ final class ProfileViewController: UIViewController {
     private var loginLabel = UILabel()
     private var descriptionLabel = UILabel()
     private var logoutButton = UIButton()
+    private let profileService = ProfileService.shared
+    private let token = OAuth2TokenStorage().token
     
 
     override func viewDidLoad() {
@@ -23,6 +25,14 @@ final class ProfileViewController: UIViewController {
         setupLoginLabel()
         setupDescriptionLabel()
         setupLogoutButton()
+        updateProfile()
+    }
+    
+    private func updateProfile() {
+        guard let profile = profileService.profile else {return }
+        self.nameLabel.text = profile.username
+        self.loginLabel.text = profile.loginname
+        self.descriptionLabel.text = profile.bio
     }
     
     
@@ -89,3 +99,4 @@ final class ProfileViewController: UIViewController {
         ])
     }
 }
+

@@ -9,14 +9,11 @@ import Foundation
 
 
 final class ProfileService {
-    private static let shared = ProfileService()
+    static let shared = ProfileService()
     
     private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     private (set) var profile: Profile?
-    
-    private let token = OAuth2TokenStorage().token
-    
     
     
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
@@ -25,12 +22,28 @@ final class ProfileService {
             return
         }
         
-        var request = URLRequest.makeHTTPRequest(
-            path: "/me",
-            httpMethod: "GET",
-            baseURL: URL(string: "https://unsplash.com")!
-        )
+        var request = URLRequest.makeHTTPRequest(path: "/me", httpMethod: "GET")
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+        
+        let task = urlSession.objectTask(for: request) {
+            [weak self] (result: Result<ProfileResult, Error>) in
+            
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let responseBody):
+                self.profile = Profile(from: responseBody)
+                guard let profile = self.profile else { return }
+                print("\(responseBody)")
+                UIBlockingProgressHUD.dismiss()
+                completion(.success(profile))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+        self.task = task
+        task.resume()
 
     }
 }
