@@ -17,7 +17,7 @@ struct Profile: Decodable {
     init(from result: ProfileResult) {
         self.username = result.username
         self.loginname = "@\(result.username)"
-        self.bio = result.bio
+        self.bio = result.bio ?? ""
         self.fullname = "\(result.firstname) \(result.lastname)"
     }
     

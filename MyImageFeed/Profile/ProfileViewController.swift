@@ -30,7 +30,7 @@ final class ProfileViewController: UIViewController {
     
     private func updateProfile() {
         guard let profile = profileService.profile else {return }
-        self.nameLabel.text = profile.username
+        self.nameLabel.text = profile.fullname
         self.loginLabel.text = profile.loginname
         self.descriptionLabel.text = profile.bio
     }
@@ -84,7 +84,8 @@ final class ProfileViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 8),
-            descriptionLabel.leadingAnchor.constraint(equalTo: loginLabel.leadingAnchor)
+            descriptionLabel.leadingAnchor.constraint(equalTo: loginLabel.leadingAnchor),
+            descriptionLabel.rightAnchor.constraint(equalTo: logoutButton.rightAnchor)
         ])
     }
     

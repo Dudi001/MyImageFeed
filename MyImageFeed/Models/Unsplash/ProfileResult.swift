@@ -12,7 +12,7 @@ struct ProfileResult: Codable {
     let username: String
     let firstname: String
     let lastname: String
-    let bio: String
+    let bio: String?
     
     enum CodingKeys: String, CodingKey {
         case username = "username"

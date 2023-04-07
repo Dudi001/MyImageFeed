@@ -100,10 +100,13 @@ extension SplashViewController {
         profileService.fetchProfile(token) { result in
             switch result {
             case .success(let userProfile):
+                print("NAME \(userProfile.username)")
+                print("LOGGINNAME \(userProfile.loginname)")
+                print("BIO \(userProfile.bio)")
+                print("FULLNAME \(userProfile.fullname)")
                 self.switchToTabBarController()
-                print("\(userProfile)")
             case.failure(let error):
-                print("Kakaya to dich \(error)")
+                return assertionFailure("Problem with profile data or token \(error)")
             }
         }
     }
