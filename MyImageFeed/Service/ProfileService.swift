@@ -3,8 +3,8 @@
 //  MyImageFeed
 //
 //  Created by Мурад Манапов on 05.04.2023.
-//ce1cUqEUGwjn7sJXSgE-BYIjGXRgyuLPYScvK6JmKuc
-//ce1cUqEUGwjn7sJXSgE-BYIjGXRgyuLPYScvK6JmKuc
+//
+//
 
 import Foundation
 
