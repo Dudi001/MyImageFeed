@@ -15,6 +15,7 @@ final class SplashViewController: UIViewController {
     private let oauth2Service = OAuth2Service()
     private let oauth2TokenStorage = OAuth2TokenStorage()
     private let profileService = ProfileService.shared
+    private let profileImageService = ProfileImageService.shared
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -43,6 +44,17 @@ final class SplashViewController: UIViewController {
         let tabBarController = UIStoryboard(name: "Main", bundle: .main)
             .instantiateViewController(withIdentifier: "TabBarViewController")
         window.rootViewController = tabBarController
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "Ошибка сети",
+            message: "Произошла ошибка при загрузке данных из сети",
+            preferredStyle: .alert)
+        let action = UIAlertAction(title: "ОК", style: .default)
+        
+        alert.addAction(action)
+        self.present(self, animated: true)
     }
 }
 
@@ -86,6 +98,7 @@ extension SplashViewController: AuthViewDelegate {
                     self.switchToTabBarController()
                 case .failure:
                     UIBlockingProgressHUD.dismiss()
+                    self.showAlert()
                     return assertionFailure("failed to get token")
                 }
             }
@@ -100,10 +113,8 @@ extension SplashViewController {
         profileService.fetchProfile(token) { result in
             switch result {
             case .success(let userProfile):
-                print("NAME \(userProfile.username)")
-                print("LOGGINNAME \(userProfile.loginname)")
-                print("BIO \(userProfile.bio)")
-                print("FULLNAME \(userProfile.fullname)")
+                UIBlockingProgressHUD.dismiss()
+                self.profileImageService.fetchProfileImageURL(username: userProfile.username, token: token) { _ in }
                 self.switchToTabBarController()
             case.failure(let error):
                 return assertionFailure("Problem with profile data or token \(error)")
