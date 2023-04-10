@@ -16,13 +16,20 @@ final class ProfileImageService {
     private var task: URLSessionTask?
     private (set) var avatarURL: String?
     
-    func fetchProfileImageURL(username: String, token: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func fetchProfileImageURL(username: String, completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
         if task != nil {
             return
         }
         
-        var request = URLRequest.makeHTTPRequest(path: "/user/\(username)", httpMethod: "GET")
+        guard let token  = OAuth2TokenStorage().token else {
+            return assertionFailure("Problem with token")
+        }
+        print("THIS IS USERNAME  \(username)")
+        
+        print("THIS IS TOKEN \(token)")
+        
+        var request = URLRequest.makeHTTPRequest(path: "/users/\(username)", httpMethod: "GET")
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
         
@@ -32,7 +39,7 @@ final class ProfileImageService {
             guard let self = self else { return }
             switch result {
             case .success(let responseBody):
-                let smalImage = responseBody.profileImage.small
+                let smalImage = responseBody.profileImage.medium
                 self.avatarURL = smalImage
                 completion(.success(self.avatarURL!))
                 NotificationCenter.default.post(
@@ -42,6 +49,7 @@ final class ProfileImageService {
                 )
             case .failure(let error):
                 completion(.failure(error))
+                print("PROBLEM HERE")
             }
         }
         self.task = task

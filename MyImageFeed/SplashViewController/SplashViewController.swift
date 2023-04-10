@@ -114,7 +114,7 @@ extension SplashViewController {
             switch result {
             case .success(let userProfile):
                 UIBlockingProgressHUD.dismiss()
-                self.profileImageService.fetchProfileImageURL(username: userProfile.username, token: token) { _ in }
+                self.profileImageService.fetchProfileImageURL(username: userProfile.username) { _ in }
                 self.switchToTabBarController()
             case.failure(let error):
                 return assertionFailure("Problem with profile data or token \(error)")

@@ -10,7 +10,12 @@ import Foundation
 struct UserResult: Decodable {
     let profileImage: ProfileImage
     
-    struct ProfileImage: Decodable {
-        let small: String
+    enum CodingKeys: String, CodingKey {
+        case profileImage = "profile_image"
     }
+    
+}
+
+struct ProfileImage: Decodable {
+    let small, medium, large: String
 }
