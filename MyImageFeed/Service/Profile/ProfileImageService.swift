@@ -25,9 +25,7 @@ final class ProfileImageService {
         guard let token  = OAuth2TokenStorage().token else {
             return assertionFailure("Problem with token")
         }
-        print("THIS IS USERNAME  \(username)")
-        
-        print("THIS IS TOKEN \(token)")
+
         
         var request = URLRequest.makeHTTPRequest(path: "/users/\(username)", httpMethod: "GET")
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -49,7 +47,6 @@ final class ProfileImageService {
                 )
             case .failure(let error):
                 completion(.failure(error))
-                print("PROBLEM HERE")
             }
         }
         self.task = task
