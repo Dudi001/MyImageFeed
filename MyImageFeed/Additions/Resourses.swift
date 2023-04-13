@@ -28,4 +28,8 @@ enum Resourses {
             static let description = "Hello, world!"
         }
     }
+    
+    enum Splash {
+        static let logo = UIImage(named: "splash_screen_logo")
+    }
 }
