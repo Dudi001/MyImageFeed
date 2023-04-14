@@ -16,8 +16,9 @@ protocol WebViewViewControllerDelegate: AnyObject {
 
 
 final class WebViewViewController: UIViewController {
-    @IBOutlet private var webView: WKWebView!
-    @IBOutlet private var progressView: UIProgressView!
+    private lazy var webView = WKWebView()
+    private lazy var progressView = UIProgressView()
+    private lazy var backButton = UIButton(type: .custom)
     private var estimatedProgressObservation: NSKeyValueObservation?
     
     
@@ -25,8 +26,12 @@ final class WebViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configItems()
+        addView()
+        addConstraintforItems()
         webView.navigationDelegate = self
         sendRequestToUnsplash()
+        
         updateProgress()
         
         estimatedProgressObservation = webView.observe(
@@ -40,18 +45,9 @@ final class WebViewViewController: UIViewController {
     
     
     
-    @IBAction private func didTapBackButton(_ sender: Any?) {
-        dismiss(animated: true, completion: nil)
+    @objc private func didTapBackButton() {
+        dismiss(animated: true)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
     
     private func updateProgress() {
         progressView.progress = Float(webView.estimatedProgress)
@@ -73,6 +69,42 @@ final class WebViewViewController: UIViewController {
         webView.load(request)
     }
     
+}
+
+
+extension WebViewViewController {
+    private func configItems() {
+        view.backgroundColor = .white
+        webView.backgroundColor = .white
+        
+        backButton.tintColor = UIColor(named: "#1A1B22")
+        backButton.setImage(Resourses.WebView.backNavButton, for: .normal)
+        backButton.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
+        
+        progressView.tintColor = UIColor(named: "#1A1B22")
+    }
+    
+    
+    private func addConstraintforItems() {
+        NSLayoutConstraint.activate([
+            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 55),
+            backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 9),
+            backButton.heightAnchor.constraint(equalToConstant: 24),
+            
+            webView.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 8),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            progressView.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 2),
+            progressView.leadingAnchor.constraint(equalTo: webView.leadingAnchor),
+            progressView.trailingAnchor.constraint(equalTo: webView.trailingAnchor)
+        ])
+    }
+    
+    private func addView() {
+        [webView, backButton, progressView].forEach(self.view.setupView)
+    }
 }
 
 
@@ -103,7 +135,6 @@ extension WebViewViewController: WKNavigationDelegate {
         {
             return codeItem.value
         } else {
-            print("PROBLEM HERE")
             return nil
         }
     }

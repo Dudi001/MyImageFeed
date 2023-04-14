@@ -32,9 +32,9 @@ final class SplashViewController: UIViewController {
                 fetchProfile(token)
                 switchToTabBarController()
             } else {
-                let storyboard = UIStoryboard(name: "Main", bundle: .main)
-                let authViewController = storyboard.instantiateViewController(withIdentifier: "AuthViewController")
-//                authViewController.delegate = self
+
+                let authViewController = AuthViewController()
+                authViewController.delegate = self
                 authViewController.modalPresentationStyle = .fullScreen
                 present(authViewController, animated: true)
                 isFirstAppear = false
@@ -71,23 +71,6 @@ final class SplashViewController: UIViewController {
 }
 
 
-//MARK: Segue
-//extension SplashViewController {
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == SegueIdentifier.showAuthenticationScreenSegueIdentifier {
-//            guard
-//                let navigationController = segue.destination as? UINavigationController,
-//                let viewController = navigationController.viewControllers[0] as? AuthViewController
-//            else {
-//                return assertionFailure("Failed to prepare for \(SegueIdentifier.showAuthenticationScreenSegueIdentifier)")
-//            }
-//            viewController.delegate = self
-//        } else {
-//            super.prepare(for: segue, sender: sender)
-//        }
-//    }
-//}
-
 
 //MARK: AuthDelegate
 extension SplashViewController: AuthViewDelegate {
@@ -96,6 +79,7 @@ extension SplashViewController: AuthViewDelegate {
         dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
             self.fetchOAuthToken(code)
+            print("THIS IS CODE \(code)")
         }
     }
     

@@ -32,4 +32,12 @@ enum Resourses {
     enum Splash {
         static let logo = UIImage(named: "splash_screen_logo")
     }
+    
+    enum Auth {
+        static let imageLogo = UIImage(named: "auth_screen_logo")
+    }
+    
+    enum WebView {
+        static let backNavButton = UIImage(named: "nav_back_button_2")
+    }
 }
