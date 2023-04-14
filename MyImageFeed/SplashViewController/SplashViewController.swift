@@ -32,7 +32,6 @@ final class SplashViewController: UIViewController {
                 fetchProfile(token)
                 switchToTabBarController()
             } else {
-
                 let authViewController = AuthViewController()
                 authViewController.delegate = self
                 authViewController.modalPresentationStyle = .fullScreen
@@ -79,7 +78,6 @@ extension SplashViewController: AuthViewDelegate {
         dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
             self.fetchOAuthToken(code)
-            print("THIS IS CODE \(code)")
         }
     }
     

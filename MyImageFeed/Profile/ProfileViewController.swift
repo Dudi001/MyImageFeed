@@ -116,6 +116,7 @@ final class ProfileViewController: UIViewController {
     
     private func setupLogoutButton() {
         logoutButton.setImage(Resourses.Images.Profile.logOut, for: .normal)
+        logoutButton.addTarget(self, action: #selector(didTaplogoutButton), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             logoutButton.heightAnchor.constraint(equalToConstant: 22),
@@ -123,6 +124,12 @@ final class ProfileViewController: UIViewController {
             logoutButton.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
             logoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26)
         ])
+    }
+    
+    
+    @objc private func didTaplogoutButton() {
+        OAuth2TokenStorage().deleteToken()
+        print("TOKEN DELETED")
     }
 }
 
