@@ -40,4 +40,8 @@ enum Resourses {
     enum WebView {
         static let backNavButton = UIImage(named: "nav_back_button_2")
     }
+    
+    enum Colors {
+        static let black = UIColor(named: "YPBlack")
+    }
 }

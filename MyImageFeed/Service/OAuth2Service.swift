@@ -56,7 +56,8 @@ final class OAuth2Service {
             let request = authTokenRequest(code: code)
             
             
-            let task = urlSession.objectTask(for: request) { (result: OAuthTokenResponseResult) in
+            let task = urlSession.objectTask(for: request) { [weak self] (result: OAuthTokenResponseResult) in
+                guard let self = self else { return }
                 switch result {
                 case.success(let responseBody):
                     OAuth2TokenStorage().token = responseBody.accessToken

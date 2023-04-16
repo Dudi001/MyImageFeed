@@ -77,11 +77,11 @@ extension WebViewViewController {
         view.backgroundColor = .white
         webView.backgroundColor = .white
         
-        backButton.tintColor = UIColor(named: "#1A1B22")
+        backButton.tintColor = Resourses.Colors.black
         backButton.setImage(Resourses.WebView.backNavButton, for: .normal)
         backButton.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
         
-        progressView.tintColor = UIColor(named: "#1A1B22")
+        progressView.tintColor = Resourses.Colors.black
     }
     
     

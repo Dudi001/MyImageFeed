@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 
 final class ProfileViewController: UIViewController {
+    
     private let avatarImageView = UIImageView()
     private let nameLabel = UILabel()
     private var loginLabel = UILabel()
@@ -126,10 +127,15 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
+    private func showAuthView() {
+        let authViewController = AuthViewController()
+        authViewController.modalPresentationStyle = .fullScreen
+        present(authViewController, animated: true)
+    }
     
     @objc private func didTaplogoutButton() {
         OAuth2TokenStorage().deleteToken()
-        print("TOKEN DELETED")
+        showAuthView()
     }
 }
 

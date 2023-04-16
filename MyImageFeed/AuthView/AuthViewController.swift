@@ -27,7 +27,7 @@ final class AuthViewController: UIViewController {
     }
     
     private func configItem() {
-        view.backgroundColor = UIColor(named: "YPBlack")
+        view.backgroundColor = Resourses.Colors.black
         
         imageLogo.image = Resourses.Auth.imageLogo
         
@@ -36,7 +36,7 @@ final class AuthViewController: UIViewController {
         loginButton.layer.cornerRadius = 16
         
         loginButton.setTitle("Войти", for: .normal)
-        loginButton.setTitleColor(UIColor(named: "YPBlack"), for: .normal)
+        loginButton.setTitleColor(Resourses.Colors.black, for: .normal)
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }

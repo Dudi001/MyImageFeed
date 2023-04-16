@@ -20,6 +20,4 @@ struct Profile: Decodable {
         self.bio = result.bio ?? ""
         self.fullname = "\(result.firstname) \(result.lastname)"
     }
-    
-    
 }

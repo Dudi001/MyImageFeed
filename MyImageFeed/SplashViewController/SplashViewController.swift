@@ -22,20 +22,16 @@ final class SplashViewController: UIViewController {
         super.viewDidLoad()
         addView()
         setupSplashLogo()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         if isFirstAppear {
             if let token = oauth2TokenStorage.token {
                 fetchProfile(token)
-                switchToTabBarController()
             } else {
-                let authViewController = AuthViewController()
-                authViewController.delegate = self
-                authViewController.modalPresentationStyle = .fullScreen
-                present(authViewController, animated: true)
+                swithToAuthViewController()
                 isFirstAppear = false
             }
         }
@@ -57,10 +53,17 @@ final class SplashViewController: UIViewController {
         window.rootViewController = tabBarController
     }
     
-    private func showAlert() {
+    private func swithToAuthViewController() {
+        let authViewController = AuthViewController()
+        authViewController.delegate = self
+        authViewController.modalPresentationStyle = .fullScreen
+        present(authViewController, animated: true)
+    }
+    
+    private func showAlert(with error: Error) {
         let alert = UIAlertController(
             title: "Ошибка сети",
-            message: "Произошла ошибка при загрузке данных из сети",
+            message: "Произошла ошибка при загрузке данных из сети. Ошибка: \(error)",
             preferredStyle: .alert)
         let action = UIAlertAction(title: "ОК", style: .default)
         
@@ -87,13 +90,14 @@ extension SplashViewController: AuthViewDelegate {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
-                case .success:
+                case .success(let response):
                     UIBlockingProgressHUD.dismiss()
                     self.switchToTabBarController()
-                case .failure:
+                    self.fetchProfile(response.accessToken)
+                case .failure(let error):
                     UIBlockingProgressHUD.dismiss()
-                    self.showAlert()
-                    return assertionFailure("failed to get token")
+                    self.showAlert(with: error)
+                    break
                 }
             }
         }
@@ -111,7 +115,8 @@ extension SplashViewController {
                 self.profileImageService.fetchProfileImageURL(username: userProfile.username) { _ in }
                 self.switchToTabBarController()
             case.failure(let error):
-                return assertionFailure("Problem with profile data or token \(error)")
+                self.showAlert(with: error)
+                break
             }
         }
     }
@@ -124,7 +129,7 @@ extension SplashViewController {
     
     private func setupSplashLogo() {
         splashLogo.image = Resourses.Splash.logo
-        view.backgroundColor = UIColor(named: "YPBlack")
+        view.backgroundColor = Resourses.Colors.black
         splashLogo.clipsToBounds = true
         
         NSLayoutConstraint.activate([
