@@ -63,12 +63,12 @@ final class SplashViewController: UIViewController {
     private func showAlert(with error: Error) {
         let alert = UIAlertController(
             title: "Ошибка сети",
-            message: "Произошла ошибка при загрузке данных из сети. Ошибка: \(error)",
+            message: "Произошла ошибка при загрузке данных из сети.",
             preferredStyle: .alert)
         let action = UIAlertAction(title: "ОК", style: .default)
         
         alert.addAction(action)
-        self.present(self, animated: true)
+        present(alert, animated: true)
     }
 }
 
