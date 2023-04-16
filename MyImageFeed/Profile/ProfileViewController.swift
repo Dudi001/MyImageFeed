@@ -6,13 +6,18 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
+    
     private let avatarImageView = UIImageView()
     private let nameLabel = UILabel()
     private var loginLabel = UILabel()
     private var descriptionLabel = UILabel()
     private var logoutButton = UIButton()
+    private let profileService = ProfileService.shared
+    private let token = OAuth2TokenStorage().token
+    private var profileImageServiceObserver: NSObjectProtocol?
     
 
     override func viewDidLoad() {
@@ -23,6 +28,37 @@ final class ProfileViewController: UIViewController {
         setupLoginLabel()
         setupDescriptionLabel()
         setupLogoutButton()
+        updateProfile()
+        updateAvatar()
+        addObserverProfileImageService()
+        
+    }
+    
+    private func addObserverProfileImageService() {
+        profileImageServiceObserver = NotificationCenter.default.addObserver(
+            forName: ProfileImageService.DidChangeNotification,
+            object: nil,
+            queue: .main) { [weak self] _ in
+                guard let self = self else { return }
+                self.updateAvatar()
+            }
+        
+    }
+    
+    private func updateAvatar() {
+            guard
+                let profileImageURL = ProfileImageService.shared.avatarURL,
+                let url = URL(string: profileImageURL)
+            else { return }
+        avatarImageView.kf.setImage(with: url,
+                                    placeholder: UIImage(named: "placeholder_avatar.png"))
+        }
+    
+    private func updateProfile() {
+        guard let profile = profileService.profile else {return }
+        self.nameLabel.text = profile.fullname
+        self.loginLabel.text = profile.loginname
+        self.descriptionLabel.text = profile.bio
     }
     
     
@@ -74,12 +110,14 @@ final class ProfileViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 8),
-            descriptionLabel.leadingAnchor.constraint(equalTo: loginLabel.leadingAnchor)
+            descriptionLabel.leadingAnchor.constraint(equalTo: loginLabel.leadingAnchor),
+            descriptionLabel.rightAnchor.constraint(equalTo: logoutButton.rightAnchor)
         ])
     }
     
     private func setupLogoutButton() {
         logoutButton.setImage(Resourses.Images.Profile.logOut, for: .normal)
+        logoutButton.addTarget(self, action: #selector(didTaplogoutButton), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             logoutButton.heightAnchor.constraint(equalToConstant: 22),
@@ -88,4 +126,16 @@ final class ProfileViewController: UIViewController {
             logoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26)
         ])
     }
+    
+    private func showAuthView() {
+        let authViewController = AuthViewController()
+        authViewController.modalPresentationStyle = .fullScreen
+        present(authViewController, animated: true)
+    }
+    
+    @objc private func didTaplogoutButton() {
+        OAuth2TokenStorage().deleteToken()
+        showAuthView()
+    }
 }
+

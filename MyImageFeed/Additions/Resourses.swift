@@ -10,7 +10,7 @@ import UIKit
 enum Resourses {
     enum Images {
         enum Profile {
-            static let defaultAvatar = UIImage(named: "profile_image")
+            static let placeholderImage = UIImage(named: "placeholder_avatar")
             static let logOut = UIImage(named: "logout_button")
             static let mockPhoto = UIImage(named: "ivan_iva")
         }
@@ -27,5 +27,21 @@ enum Resourses {
             static let nickname = "@ivanov_iva"
             static let description = "Hello, world!"
         }
+    }
+    
+    enum Splash {
+        static let logo = UIImage(named: "splash_screen_logo")
+    }
+    
+    enum Auth {
+        static let imageLogo = UIImage(named: "auth_screen_logo")
+    }
+    
+    enum WebView {
+        static let backNavButton = UIImage(named: "nav_back_button_2")
+    }
+    
+    enum Colors {
+        static let black = UIColor(named: "YPBlack")
     }
 }
