@@ -25,13 +25,15 @@ final class ImagesListService {
             return
         }
         
-        let nextPage = lastLoadedPage == nil
-            ? 1
-            : lastLoadedPage! + 1
+        if lastLoadedPage == nil {
+            lastLoadedPage = 1
+        } else {
+            lastLoadedPage! += 1
+        }
         
         guard let token = OAuth2TokenStorage().token else { return }
         
-        var request = URLRequest.makeHTTPRequest(path: "photos/?page=\(lastLoadedPage!)", httpMethod: "GET")
+        var request = URLRequest.makeHTTPRequest(path: "/photos" + "/?page=\(lastLoadedPage!)", httpMethod: "GET")
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<[PhotoResult], Error>) in
@@ -51,5 +53,6 @@ final class ImagesListService {
                 print("PHOTO REQUEST ERROR: \(error)")
             }
         }
+        task.resume()
     }
 }
