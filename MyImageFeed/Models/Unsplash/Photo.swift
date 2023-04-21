@@ -15,15 +15,14 @@ struct Photo {
     let welcomeDescription: String?
     let thumbImageURL: String
     let largeImageURL: String
-    let isLiked: Bool
+    var isLiked: Bool
     
-//    init(from result: PhotoResult) {
-//        self.id = result.id
-//        self.size = CGSize(width: result.width, height: result.height)
-//        self.createdAt = result.created_at ?? ""
-//        self.welcomeDescription = result.description ?? ""
-//        self.thumbImageURL = result.urls.thumb ?? ""
-//        self.largeImageURL = result.urls.full ?? ""
-//        self.isLiked = false
-//    }
+}
+
+struct LikeResult {
+    let likePhoto: PhotoResult
+    
+    init(likedPhotoResult: LikePhotoResult) {
+        self.likePhoto = likedPhotoResult.photo
+    }
 }

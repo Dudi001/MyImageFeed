@@ -36,6 +36,9 @@ struct Urls: Codable {
     let thumb: String?
 }
 
+struct LikePhotoResult:Decodable {
+    let photo: PhotoResult
+}
 
 
 //extension PhotoResult {
