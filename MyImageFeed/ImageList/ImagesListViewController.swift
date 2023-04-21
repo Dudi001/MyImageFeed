@@ -42,8 +42,8 @@ final class ImagesListViewController: UIViewController {
             let viewController = segue.destination as! SingleImageViewController
             let indexPath = sender as! IndexPath
             let imageName = photos[indexPath.row].largeImageURL
+            print("FULL IMAGE: \(imageName)")
             if let url = URL(string: imageName) {
-                print("URL: \(url)")
                 viewController.imageView.kf.setImage(with: url, placeholder: UIImage(named: "DownloadingImage"))
             }
             
@@ -73,19 +73,18 @@ extension ImagesListViewController: UITableViewDataSource {
         }
         //конфигурируем и возвращаем
         let cellPhotoURL = photos[indexPath.row].thumbImageURL
+        
+        let date = photos[indexPath.row].createdAt
+//        let newDate = date.components(separatedBy: "T").first
+        
         if let url = URL(string: cellPhotoURL) {
             imageListCell.cellImage.kf.setImage(with: url, placeholder: UIImage(named: "DownloadingImage")){ _ in
                 imageListCell.cellImage.kf.indicatorType = .activity
-                imageListCell.dateLabel.text = self.dateFormatter.string(from: Date())
+                imageListCell.dateLabel.text = "\(date))"
                 tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         }
         
-//        let date = dateFormatter.string(from: Date())
-//        let isLiked = indexPath.row % 2 == 0
-//        cell.selectionStyle = .none
-//
-//        imageListCell.configCell(image: image, date: date, isLiked: isLiked)
         
         return imageListCell
     }

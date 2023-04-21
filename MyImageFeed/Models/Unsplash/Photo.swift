@@ -17,13 +17,13 @@ struct Photo {
     let largeImageURL: String
     let isLiked: Bool
     
-    init(from result: PhotoResult) {
-        self.id = result.id
-        self.size = CGSize(width: result.width, height: result.height)
-        self.createdAt = DateFormatter().date(from: result.created_at)
-        self.welcomeDescription = result.description ?? ""
-        self.thumbImageURL = result.urls.thumb ?? ""
-        self.largeImageURL = result.urls.full ?? ""
-        self.isLiked = false
-    }
+//    init(from result: PhotoResult) {
+//        self.id = result.id
+//        self.size = CGSize(width: result.width, height: result.height)
+//        self.createdAt = result.created_at ?? ""
+//        self.welcomeDescription = result.description ?? ""
+//        self.thumbImageURL = result.urls.thumb ?? ""
+//        self.largeImageURL = result.urls.full ?? ""
+//        self.isLiked = false
+//    }
 }

@@ -18,6 +18,14 @@ final class ImagesListService {
     static let DidChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
     private var task: URLSessionTask?
     
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+//        formatter.dateStyle = .long
+//        formatter.timeStyle = .none
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        return formatter
+    }()
+    
     
     func fetchPhotosNextPage() {
         assert(Thread.isMainThread)
@@ -42,17 +50,30 @@ final class ImagesListService {
             switch result {
             case .success(let responseBody):
                 responseBody.forEach { photoResult in
-                    self.photos.append(Photo(from: photoResult))
+
+//                    guard let date = photoResult.created_at else { return }
+
+                    self.photos.append(Photo(
+                        id: photoResult.id,
+                        size: CGSize(width: photoResult.width, height: photoResult.height),
+                        createdAt: self.dateFormatter.date(from: photoResult.created_at ?? ""),
+                        welcomeDescription: photoResult.description ?? "",
+                        thumbImageURL: photoResult.urls.thumb ?? "",
+                        largeImageURL: photoResult.urls.full ?? "",
+                        isLiked: photoResult.liked_by_user))
                 }
+
                 NotificationCenter.default.post(
                     name: ImagesListService.DidChangeNotification,
                     object: self,
                     userInfo: ["Photos": self.photos])
-                
             case .failure(let error):
                 print("PHOTO REQUEST ERROR: \(error)")
             }
         }
         task.resume()
     }
+    
+    
+    
 }

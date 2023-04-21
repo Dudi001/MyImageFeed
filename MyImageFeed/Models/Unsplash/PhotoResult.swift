@@ -9,7 +9,7 @@ import Foundation
 
 struct PhotoResult: Decodable {
     let id: String
-    let created_at: String
+    let created_at: String?
     let width: Int
     let height: Int
     let liked_by_user: Bool
@@ -35,3 +35,17 @@ struct Urls: Codable {
     let small: String?
     let thumb: String?
 }
+
+
+
+//extension PhotoResult {
+//    func convert() -> Photo {
+//        return Photo(id: self.id,
+//                     size: CGSize(width: self.width, height: self.height),
+//                     createdAt: self.created_at?.dayMonthYearFormat(),
+//                     welcomeDescription: self.description,
+//                     thumbImageURL: self.Urls.thumb,
+//                     largeImageURL: self.Urls.full,
+//                     isLiked: self.likedByUser)
+//    }
+//}
