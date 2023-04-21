@@ -17,7 +17,7 @@
 		D985707529E448BE00814172 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = D985707429E448BE00814172 /* SwiftKeychainWrapper */; };
 		D985707729E6BE9F00814172 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D985707629E6BE9F00814172 /* TabBarController.swift */; };
 		D9B77ECF29B3C832002E4BEB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B77ECE29B3C832002E4BEB /* ProfileViewController.swift */; };
-		D9B95BE429F18F0900E9A79F /* Date _Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B95BE329F18F0900E9A79F /* Date _Extension.swift */; };
+		D9B95BE629F30D1600E9A79F /* PhotoLikeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B95BE529F30D1600E9A79F /* PhotoLikeResult.swift */; };
 		D9BBDE7C29A026A60045A408 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BBDE7B29A026A60045A408 /* AppDelegate.swift */; };
 		D9BBDE7E29A026A60045A408 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BBDE7D29A026A60045A408 /* SceneDelegate.swift */; };
 		D9BBDE8029A026A60045A408 /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BBDE7F29A026A60045A408 /* ImagesListViewController.swift */; };
@@ -52,7 +52,7 @@
 		D958EC4729C6448F0030CD81 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D985707629E6BE9F00814172 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D9B77ECE29B3C832002E4BEB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		D9B95BE329F18F0900E9A79F /* Date _Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date _Extension.swift"; sourceTree = "<group>"; };
+		D9B95BE529F30D1600E9A79F /* PhotoLikeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLikeResult.swift; sourceTree = "<group>"; };
 		D9BBDE7829A026A60045A408 /* MyImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9BBDE7B29A026A60045A408 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9BBDE7D29A026A60045A408 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,7 +128,6 @@
 				D958EC4429C374960030CD81 /* UIviewExt.swift */,
 				D9EF654B29DEB3BF00F8B36C /* URLSession_Extension.swift */,
 				D902416529E17FF9006D147B /* URLRequest_Extention.swift */,
-				D9B95BE329F18F0900E9A79F /* Date _Extension.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -139,6 +138,7 @@
 				D958EC4729C6448F0030CD81 /* Constants.swift */,
 				D9F1DEA529ED8933001C51BF /* PhotoResult.swift */,
 				D9F1DEA729ED8ACE001C51BF /* Photo.swift */,
+				D9B95BE529F30D1600E9A79F /* PhotoLikeResult.swift */,
 			);
 			path = Unsplash;
 			sourceTree = "<group>";
@@ -348,6 +348,7 @@
 				D985707729E6BE9F00814172 /* TabBarController.swift in Sources */,
 				D9B77ECF29B3C832002E4BEB /* ProfileViewController.swift in Sources */,
 				D9F1DEA629ED8933001C51BF /* PhotoResult.swift in Sources */,
+				D9B95BE629F30D1600E9A79F /* PhotoLikeResult.swift in Sources */,
 				D958EC4529C374960030CD81 /* UIviewExt.swift in Sources */,
 				D902416629E17FF9006D147B /* URLRequest_Extention.swift in Sources */,
 				D902416429E0103E006D147B /* UserResult.swift in Sources */,
@@ -361,7 +362,6 @@
 				D9D0B49E29B791D600DBC784 /* SingleImageViewController.swift in Sources */,
 				D9BBDE7E29A026A60045A408 /* SceneDelegate.swift in Sources */,
 				D958EC4829C6448F0030CD81 /* Constants.swift in Sources */,
-				D9B95BE429F18F0900E9A79F /* Date _Extension.swift in Sources */,
 				D9CBE71F29CEF9D900DBEA75 /* TokenAuth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,7 +518,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -551,7 +551,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -20,9 +20,7 @@ final class ImagesListService {
     
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-//        formatter.dateStyle = .long
-//        formatter.timeStyle = .none
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         return formatter
     }()
     
@@ -51,8 +49,9 @@ final class ImagesListService {
             case .success(let responseBody):
                 responseBody.forEach { photoResult in
 
-//                    guard let date = photoResult.created_at else { return }
-
+                    guard let date = photoResult.created_at else { return }
+//                    print(date)
+//                    print(self.dateFormatter.string(from: .now))
                     self.photos.append(Photo(
                         id: photoResult.id,
                         size: CGSize(width: photoResult.width, height: photoResult.height),
@@ -74,6 +73,14 @@ final class ImagesListService {
         task.resume()
     }
     
+    
+    func changeLike(photosId: String, isLiked: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
+        let method = isLiked ? "POST" : "DELETE"
+        guard let token = OAuth2TokenStorage().token else { return }
+        
+        var request = URLRequest.makeHTTPRequest(path: "/photos" + "/\(photosId)" + "/like", httpMethod: method)
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+    }
     
     
 }

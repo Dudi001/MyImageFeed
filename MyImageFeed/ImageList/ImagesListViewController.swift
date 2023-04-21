@@ -74,13 +74,13 @@ extension ImagesListViewController: UITableViewDataSource {
         //конфигурируем и возвращаем
         let cellPhotoURL = photos[indexPath.row].thumbImageURL
         
-        let date = photos[indexPath.row].createdAt
-//        let newDate = date.components(separatedBy: "T").first
-        
         if let url = URL(string: cellPhotoURL) {
             imageListCell.cellImage.kf.setImage(with: url, placeholder: UIImage(named: "DownloadingImage")){ _ in
                 imageListCell.cellImage.kf.indicatorType = .activity
-                imageListCell.dateLabel.text = "\(date))"
+                if let date = self.photos[indexPath.row].createdAt {
+                    let dateString = self.dateFormatter.string(from: date)
+                    imageListCell.dateLabel.text = "\(dateString)"
+                }
                 tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         }
