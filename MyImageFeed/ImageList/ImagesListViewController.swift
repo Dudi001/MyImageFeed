@@ -72,6 +72,7 @@ extension ImagesListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         //конфигурируем и возвращаем
+        imageListCell.delegate = self
         let cellPhotoURL = photos[indexPath.row].thumbImageURL
         
         if let url = URL(string: cellPhotoURL) {
@@ -90,7 +91,7 @@ extension ImagesListViewController: UITableViewDataSource {
     }
 }
 
-
+//MARK: TableView delegate
 extension ImagesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -143,5 +144,40 @@ extension ImagesListViewController {
                 self.updateTableViewAnimated()
             }
     }
+    
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "Ошибка",
+            message: "Не спамь лайками.",
+            preferredStyle: .alert)
+        let action = UIAlertAction(title: "ОК", style: .default)
+        
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+}
+
+//MARK: ImageListCell Deleagete
+extension ImagesListViewController: ImagesListCellDelegate {
+    func imageListCellDidTapLike(_ cell: ImagesListCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+               let photo = photos[indexPath.row]
+        
+        UIBlockingProgressHUD.show()
+        imagesListService.changeLike(photosId: photo.id, isLiked: !photo.isLiked) { result in
+            switch result{
+            case .success():
+                print("OK")
+                self.photos = self.imagesListService.photos
+                cell.setIsLiked(self.photos[indexPath.row].isLiked)
+                UIBlockingProgressHUD.dismiss()
+            case .failure(let error):
+                UIBlockingProgressHUD.dismiss()
+                print("LIKE ERRPR: \(error)")
+                self.showAlert()
+            }
+        }
+    }
+    
     
 }
