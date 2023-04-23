@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import WebKit
 
 final class ProfileViewController: UIViewController {
     
@@ -133,9 +134,19 @@ final class ProfileViewController: UIViewController {
         present(authViewController, animated: true)
     }
     
+    private func cleanCookie() {
+       HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+       WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+          records.forEach { record in
+             WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+          }
+       }
+    }
+    
     @objc private func didTaplogoutButton() {
         OAuth2TokenStorage().deleteToken()
         showAuthView()
+        cleanCookie()
     }
 }
 
