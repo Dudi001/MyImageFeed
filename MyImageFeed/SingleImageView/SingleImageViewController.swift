@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class SingleImageViewController: UIViewController {
     var image: UIImage! {
@@ -16,15 +17,18 @@ final class SingleImageViewController: UIViewController {
         }
     }
     
+    var urlImage: URL?
+    
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = image
-        rescaleAndCenterImageInScrollView(image: image)
+//        imageView.image = image
+//        rescaleAndCenterImageInScrollView(image: image)
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
+        showImage(largeURL: urlImage!)
     }
     
 
@@ -64,5 +68,45 @@ extension SingleImageViewController: UIScrollViewDelegate {
         let x = (newContentSize.width - visibleRectSize.width) / 2
         let y = (newContentSize.height - visibleRectSize.height) / 2
         scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
+    }
+}
+
+extension SingleImageViewController {
+    private func showImage(largeURL: URL) {
+        guard isViewLoaded else {return}
+        let imageView = UIImageView()
+        UIBlockingProgressHUD.show()
+        imageView.kf.setImage(with: largeURL,
+                                    placeholder: UIImage(named: "placeholder")) { [weak self] result in
+            UIBlockingProgressHUD.dismiss()
+            guard let self else {return}
+            switch result {
+            case .success(let imageResult):
+                self.imageView.image = imageResult.image
+                self.rescaleAndCenterImageInScrollView(image: imageResult.image)
+            case .failure:
+                self.showError()
+            }
+        }
+    }
+    
+    private func showError() {
+        let alert = UIAlertController(
+            title: "Ошибка",
+            message: "Что-то пошло не так. Попробовать ещё раз?",
+            preferredStyle: .alert)
+        let actionNo = UIAlertAction(title: "Нет", style: .default){ _ in
+            self.dismiss(animated: true)
+        }
+        let actionYes = UIAlertAction(title: "Да", style: .default){ [weak self] _ in
+            if let imageTemp = self?.urlImage{
+                self?.showImage(largeURL: imageTemp)
+            }
+            
+        }
+        
+        alert.addAction(actionNo)
+        alert.addAction(actionYes)
+        present(alert, animated: true)
     }
 }

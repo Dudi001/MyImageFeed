@@ -42,9 +42,8 @@ final class ImagesListViewController: UIViewController {
             let viewController = segue.destination as! SingleImageViewController
             let indexPath = sender as! IndexPath
             let imageName = photos[indexPath.row].largeImageURL
-            print("FULL IMAGE: \(imageName)")
-            if let url = URL(string: imageName) {
-                viewController.imageView.kf.setImage(with: url, placeholder: UIImage(named: "DownloadingImage"))
+            if let urlImage = URL(string: imageName) {
+                viewController.urlImage = urlImage
             }
             
         } else {
@@ -151,6 +150,7 @@ extension ImagesListViewController {
             message: "Не спамь лайками.",
             preferredStyle: .alert)
         let action = UIAlertAction(title: "ОК", style: .default)
+        
         
         alert.addAction(action)
         present(alert, animated: true)
