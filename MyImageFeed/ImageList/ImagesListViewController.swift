@@ -149,7 +149,7 @@ extension ImagesListViewController {
             title: "Ошибка",
             message: "Не спамь лайками.",
             preferredStyle: .alert)
-        let action = UIAlertAction(title: "ОК", style: .default)
+        let action = UIAlertAction(title: "Не буду!", style: .default)
         
         
         alert.addAction(action)

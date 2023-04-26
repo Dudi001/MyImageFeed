@@ -19,12 +19,12 @@ final class ImagesListService {
     private var task: URLSessionTask?
     private var likeTask: URLSessionTask?
     
-    private lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        return formatter
-    }()
-    
+//    private lazy var dateFormatter: DateFormatter = {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+//        return formatter
+//    }()
+    let dateFormatter = ISO8601DateFormatter()
     
     func fetchPhotosNextPage() {
         assert(Thread.isMainThread)
@@ -50,7 +50,7 @@ final class ImagesListService {
             switch result {
             case .success(let responseBody):
                 responseBody.forEach { photoResult in
-
+                    
                     self.photos.append(Photo(
                         id: photoResult.id,
                         size: CGSize(width: photoResult.width, height: photoResult.height),
@@ -106,6 +106,4 @@ final class ImagesListService {
         self.likeTask = task
         task.resume()
     }
-    
-    
 }

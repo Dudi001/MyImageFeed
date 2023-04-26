@@ -143,10 +143,28 @@ final class ProfileViewController: UIViewController {
        }
     }
     
+    private func showOutAlert() {
+        let alert = UIAlertController(
+            title: "Уже уходите?",
+            message: "Вы уверенены?",
+            preferredStyle: .alert)
+        
+        let actionYes = UIAlertAction(title: "Да", style: .default){[weak self] _ in
+            OAuth2TokenStorage().deleteToken()
+            self?.cleanCookie()
+            self?.showAuthView()
+
+        }
+        let actionNo = UIAlertAction(title: "Нет", style: .default)
+        
+        alert.addAction(actionYes)
+        alert.addAction(actionNo)
+        
+        present(alert, animated: true )
+    }
+    
     @objc private func didTaplogoutButton() {
-        OAuth2TokenStorage().deleteToken()
-        showAuthView()
-        cleanCookie()
+        showOutAlert()
     }
 }
 

@@ -39,16 +39,3 @@ struct Urls: Codable {
 struct LikePhotoResult:Decodable {
     let photo: PhotoResult
 }
-
-
-//extension PhotoResult {
-//    func convert() -> Photo {
-//        return Photo(id: self.id,
-//                     size: CGSize(width: self.width, height: self.height),
-//                     createdAt: self.created_at?.dayMonthYearFormat(),
-//                     welcomeDescription: self.description,
-//                     thumbImageURL: self.Urls.thumb,
-//                     largeImageURL: self.Urls.full,
-//                     isLiked: self.likedByUser)
-//    }
-//}
