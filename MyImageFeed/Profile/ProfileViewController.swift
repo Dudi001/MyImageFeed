@@ -64,6 +64,7 @@ final class ProfileViewController: UIViewController {
     
     
     private func addViews() {
+        view.backgroundColor = Resourses.Colors.black
         let listViews = [avatarImageView, nameLabel, loginLabel, descriptionLabel, logoutButton]
         listViews.forEach{self.view.setupView($0) }
     }

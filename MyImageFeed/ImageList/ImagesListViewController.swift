@@ -13,7 +13,6 @@ final class ImagesListViewController: UIViewController {
 
     @IBOutlet private var tableView: UITableView!
     
-    private let photosName: [String] = Array(0..<20).map{ "\($0)" }
     var photos: [Photo] = []
     private let imagesListService = ImagesListService.shared
     private var InfoImageObserver: NSObjectProtocol?
@@ -75,17 +74,17 @@ extension ImagesListViewController: UITableViewDataSource {
         let cellPhotoURL = photos[indexPath.row].thumbImageURL
         
         if let url = URL(string: cellPhotoURL) {
-            imageListCell.cellImage.kf.setImage(with: url, placeholder: UIImage(named: "DownloadingImage")){ _ in
+            imageListCell.cellImage.kf.setImage(with: url, placeholder: UIImage(named: "DownloadingImage")){[weak self] _ in
+                guard let self = self else {return }
                 imageListCell.cellImage.kf.indicatorType = .activity
                 if let date = self.photos[indexPath.row].createdAt {
                     let dateString = self.dateFormatter.string(from: date)
                     imageListCell.dateLabel.text = "\(dateString)"
+                    imageListCell.setIsLiked(self.photos[indexPath.row].isLiked)
                 }
                 tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         }
-        
-        
         return imageListCell
     }
 }
@@ -161,13 +160,12 @@ extension ImagesListViewController {
 extension ImagesListViewController: ImagesListCellDelegate {
     func imageListCellDidTapLike(_ cell: ImagesListCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-               let photo = photos[indexPath.row]
-        
+        let photo = photos[indexPath.row]
         UIBlockingProgressHUD.show()
-        imagesListService.changeLike(photosId: photo.id, isLiked: !photo.isLiked) { result in
+        imagesListService.changeLike(photosId: photo.id, isLiked: !photo.isLiked) {[weak self] result in
+            guard let self = self else { return }
             switch result{
             case .success():
-                print("OK")
                 self.photos = self.imagesListService.photos
                 cell.setIsLiked(self.photos[indexPath.row].isLiked)
                 UIBlockingProgressHUD.dismiss()

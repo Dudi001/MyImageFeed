@@ -17,13 +17,13 @@ struct PhotoResult: Decodable {
     let urls: Urls
     
     enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case created_at = "created_at"
-        case width = "width"
-        case height = "height"
-        case liked_by_user = "liked_by_user"
-        case description = "description"
-        case urls = "urls"
+        case id
+        case created_at
+        case width
+        case height
+        case liked_by_user
+        case description
+        case urls
     }
 
 }

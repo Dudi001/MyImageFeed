@@ -22,7 +22,7 @@
                                 <color key="backgroundColor" name="YPBlack"/>
                                 <color key="separatorColor" name="Color"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageListCell" rowHeight="209" id="dAy-f1-NYf" customClass="ImagesListCell" customModule="MyImageFeed" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageListCell" rowHeight="209" id="dAy-f1-NYf" customClass="ImagesListCell" customModule="MyImageFeed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="414" height="209"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dAy-f1-NYf" id="aX4-Rt-hLp">

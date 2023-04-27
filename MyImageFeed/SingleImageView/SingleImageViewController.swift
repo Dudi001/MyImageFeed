@@ -20,7 +20,7 @@ final class SingleImageViewController: UIViewController {
     var urlImage: URL?
     
     @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet private var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +80,8 @@ extension SingleImageViewController {
             guard let self else {return}
             switch result {
             case .success(let imageResult):
-                self.imageView.image = imageResult.image
+                self.image = imageResult.image
+                self.imageView.image = self.image
                 self.rescaleAndCenterImageInScrollView(image: imageResult.image)
             case .failure:
                 self.showError()
@@ -93,12 +94,14 @@ extension SingleImageViewController {
             title: "Ошибка",
             message: "Что-то пошло не так. Попробовать ещё раз?",
             preferredStyle: .alert)
-        let actionNo = UIAlertAction(title: "Нет", style: .default){ _ in
+        let actionNo = UIAlertAction(title: "Нет", style: .default){[weak self] _ in
+            guard let self = self else { return }
             self.dismiss(animated: true)
         }
         let actionYes = UIAlertAction(title: "Да", style: .default){ [weak self] _ in
-            if let imageTemp = self?.urlImage{
-                self?.showImage(largeURL: imageTemp)
+            guard let self = self else { return }
+            if let imageTemp = self.urlImage{
+                self.showImage(largeURL: imageTemp)
             }
             
         }

@@ -19,11 +19,6 @@ final class ImagesListService {
     private var task: URLSessionTask?
     private var likeTask: URLSessionTask?
     
-//    private lazy var dateFormatter: DateFormatter = {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-//        return formatter
-//    }()
     let dateFormatter = ISO8601DateFormatter()
     
     func fetchPhotosNextPage() {
@@ -38,9 +33,10 @@ final class ImagesListService {
             lastLoadedPage! += 1
         }
         
+        guard let lastLoadedPage = lastLoadedPage else { return }
         guard let token = OAuth2TokenStorage().token else { return }
         
-        var request = URLRequest.makeHTTPRequest(path: "/photos" + "/?page=\(lastLoadedPage!)", httpMethod: "GET")
+        var request = URLRequest.makeHTTPRequest(path: "/photos" + "/?page=\(lastLoadedPage)", httpMethod: "GET")
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<[PhotoResult], Error>) in
@@ -49,8 +45,8 @@ final class ImagesListService {
             self.task = nil
             switch result {
             case .success(let responseBody):
-                responseBody.forEach { photoResult in
-                    
+                responseBody.forEach { [weak self] photoResult in
+                    guard let self = self else { return }
                     self.photos.append(Photo(
                         id: photoResult.id,
                         size: CGSize(width: photoResult.width, height: photoResult.height),
