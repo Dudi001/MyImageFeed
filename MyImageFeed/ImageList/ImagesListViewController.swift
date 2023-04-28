@@ -171,8 +171,8 @@ extension ImagesListViewController: ImagesListCellDelegate {
                 UIBlockingProgressHUD.dismiss()
             case .failure(let error):
                 UIBlockingProgressHUD.dismiss()
-                print("LIKE ERRPR: \(error)")
                 self.showAlert()
+                return assertionFailure("like error: \(error)")
             }
         }
     }
