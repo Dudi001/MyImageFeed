@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import WebKit
 
 final class ProfileViewController: UIViewController {
     
@@ -63,6 +64,7 @@ final class ProfileViewController: UIViewController {
     
     
     private func addViews() {
+        view.backgroundColor = Resourses.Colors.black
         let listViews = [avatarImageView, nameLabel, loginLabel, descriptionLabel, logoutButton]
         listViews.forEach{self.view.setupView($0) }
     }
@@ -133,9 +135,37 @@ final class ProfileViewController: UIViewController {
         present(authViewController, animated: true)
     }
     
+    private func cleanCookie() {
+       HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+       WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+          records.forEach { record in
+             WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+          }
+       }
+    }
+    
+    private func showOutAlert() {
+        let alert = UIAlertController(
+            title: "Уже уходите?",
+            message: "Вы уверенены?",
+            preferredStyle: .alert)
+        
+        let actionYes = UIAlertAction(title: "Да", style: .default){[weak self] _ in
+            OAuth2TokenStorage().deleteToken()
+            self?.cleanCookie()
+            self?.showAuthView()
+
+        }
+        let actionNo = UIAlertAction(title: "Нет", style: .default)
+        
+        alert.addAction(actionYes)
+        alert.addAction(actionNo)
+        
+        present(alert, animated: true )
+    }
+    
     @objc private func didTaplogoutButton() {
-        OAuth2TokenStorage().deleteToken()
-        showAuthView()
+        showOutAlert()
     }
 }
 
