@@ -18,57 +18,37 @@ public protocol WebViewPresenterProtocol: AnyObject {
 
 
 final class WebViewPresenter: WebViewPresenterProtocol {
-    func code(from url: URL) -> String? {
-        if
-            let urlComponents = URLComponents(string: url.absoluteString),
-            urlComponents.path == "/oauth/authorize/native",
-            let items = urlComponents.queryItems,
-            let codeItem = items.first(where: { $0.name == "code" })
-        {
-            return codeItem.value
-        } else {
-            return nil
-        }
+    
+    weak var view: WebViewViewControllerProtocol?
+    var authHelper: AuthHelperProtocol
+    
+    init(authHelper: AuthHelperProtocol) {
+        self.authHelper = authHelper
     }
-    
-    func didUpdateProgressValue(_ newValue: Double) {
-        let newProgressValue = Float(newValue)
-        view?.setProgressValue(newProgressValue)
-        
-        let shouldHideProgress = shouldHideProgress(for: newProgressValue)
-        view?.setProgressHidden(shouldHideProgress)
-    }
-    
-    func shouldHideProgress(for value: Float) -> Bool {
-        abs(value - 0.1) <= 0.0001
-    }
-    
-    
-    var view: WebViewViewControllerProtocol?
-
     
     func viewDidLoad() {
-        sendRequestToUnsplash()
-        
-        
+        let request = authHelper.authRequest()
+        view?.load(request: request)
+        didUpdateProgressValue(0)
     }
     
     
-    private func sendRequestToUnsplash() {
-        var urlComponents = URLComponents(string: "https://unsplash.com/oauth/authorize")!
-        urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: UnsplashParam.accessKey),
-            URLQueryItem(name: "redirect_uri", value: UnsplashParam.redirectURI),
-            URLQueryItem(name: "response_type", value: "code"),
-            URLQueryItem(name: "scope", value: UnsplashParam.accessScope)
-        ]
+    
+    func code(from url: URL) -> String? {
+        authHelper.code(from: url)
+    }
+    
+    
+    func didUpdateProgressValue(_ newValue: Double) {
+            let newProgressValue = Float(newValue)
+            view?.setProgressValue(newProgressValue)
+            
+            let shouldHideProgress = shouldHideProgress(for: newProgressValue)
+            view?.setProgressHidden(shouldHideProgress)
+        }
         
-        let url = urlComponents.url!
-        let request = URLRequest(url: url)
-        
-        didUpdateProgressValue(0)
-        
-        view?.load(request: request)
+    func shouldHideProgress(for value: Float) -> Bool {
+        abs(value - 1.0) <= 0.0001
     }
     
 }
