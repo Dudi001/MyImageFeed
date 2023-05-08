@@ -79,6 +79,7 @@ final class WebViewViewController: UIViewController, WebViewViewControllerProtoc
 extension WebViewViewController {
     private func configItems() {
         view.backgroundColor = .white
+        webView.accessibilityIdentifier = "UnsplashWebView"
         webView.backgroundColor = .white
         
         backButton.tintColor = Resourses.Colors.black

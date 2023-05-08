@@ -36,6 +36,7 @@ final class AuthViewController: UIViewController {
         loginButton.layer.cornerRadius = 16
         
         loginButton.setTitle("Войти", for: .normal)
+        loginButton.accessibilityIdentifier = "AuthenticateButton"
         loginButton.setTitleColor(Resourses.Colors.black, for: .normal)
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)

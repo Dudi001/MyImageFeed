@@ -120,6 +120,7 @@ final class ProfileViewController: UIViewController {
     private func setupLogoutButton() {
         logoutButton.setImage(Resourses.Images.Profile.logOut, for: .normal)
         logoutButton.addTarget(self, action: #selector(didTaplogoutButton), for: .touchUpInside)
+        logoutButton.accessibilityIdentifier = "LogoutButton"
         
         NSLayoutConstraint.activate([
             logoutButton.heightAnchor.constraint(equalToConstant: 22),
