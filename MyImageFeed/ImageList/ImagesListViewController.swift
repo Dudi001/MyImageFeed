@@ -9,7 +9,14 @@ import UIKit
 import Kingfisher
 
 
-final class ImagesListViewController: UIViewController {
+protocol ImagelistViewControllerProtocol: AnyObject {
+    var presenter: ImageListViewPresenterProtocol? { get set }
+    func updateTableViewAnimated()
+}
+
+final class ImagesListViewController: UIViewController, ImagelistViewControllerProtocol {
+    var presenter: ImageListViewPresenterProtocol?
+    
 
     @IBOutlet private var tableView: UITableView!
     
@@ -29,7 +36,8 @@ final class ImagesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        photosObserver()
+//        photosObserver()
+        presenter?.photosObserver()
         imagesListService.fetchPhotosNextPage()
         updateTableViewAnimated()
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
@@ -132,28 +140,28 @@ extension ImagesListViewController {
     }
     
     
-    private func photosObserver() {
-        InfoImageObserver = NotificationCenter.default.addObserver(
-            forName: ImagesListService.DidChangeNotification,
-            object: nil,
-            queue: .main) {
-                [weak self] _ in
-                guard let self = self else { return }
-                self.updateTableViewAnimated()
-            }
-    }
+//    private func photosObserver() {
+//        InfoImageObserver = NotificationCenter.default.addObserver(
+//            forName: ImagesListService.DidChangeNotification,
+//            object: nil,
+//            queue: .main) {
+//                [weak self] _ in
+//                guard let self = self else { return }
+//                self.updateTableViewAnimated()
+//            }
+//    }
     
-    private func showAlert() {
-        let alert = UIAlertController(
-            title: "Ошибка",
-            message: "Не спамь лайками.",
-            preferredStyle: .alert)
-        let action = UIAlertAction(title: "Не буду!", style: .default)
-        
-        
-        alert.addAction(action)
-        present(alert, animated: true)
-    }
+//    private func showAlert() {
+//        let alert = UIAlertController(
+//            title: "Ошибка",
+//            message: "Не спамь лайками.",
+//            preferredStyle: .alert)
+//        let action = UIAlertAction(title: "Не буду!", style: .default)
+//
+//
+//        alert.addAction(action)
+//        present(alert, animated: true)
+//    }
 }
 
 //MARK: ImageListCell Deleagete
@@ -171,7 +179,7 @@ extension ImagesListViewController: ImagesListCellDelegate {
                 UIBlockingProgressHUD.dismiss()
             case .failure(let error):
                 UIBlockingProgressHUD.dismiss()
-                self.showAlert()
+                self.presenter?.showAlert(vc: self)
                 return assertionFailure("like error: \(error)")
             }
         }
