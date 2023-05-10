@@ -57,6 +57,11 @@ final class ImagesListViewController: UIViewController, ImagelistViewControllerP
             super.prepare(for: segue, sender: sender)
         }
     }
+    
+    func configure(_ presenter: ImageListViewPresenterProtocol) {
+             self.presenter = presenter
+             presenter.view = self
+         }
 }
 
 
