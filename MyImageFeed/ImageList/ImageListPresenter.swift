@@ -14,6 +14,7 @@ protocol ImageListViewPresenterProtocol: AnyObject {
     var InfoImageObserver: NSObjectProtocol? { get set }
     func showAlert(vc: UIViewController)
     func photosObserver()
+    func updateTableView()
     
     
 }
@@ -46,10 +47,19 @@ final class ImageViewPresenter: ImageListViewPresenterProtocol {
             queue: .main) {
                 [weak self] _ in
                 guard let self = self else { return }
-                self.view?.updateTableViewAnimated()
+                self.updateTableView()
             }
     }
     
+    
+    func updateTableView() {
+        let oldCount = photos.count
+        let newCount = imagesListService.photos.count
+        photos = imagesListService.photos
+        if oldCount != newCount {
+            view?.updateTableViewAnimated(oldCount: oldCount, newCount: newCount)
+        }
+    }
 }
 
 
