@@ -43,7 +43,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         
     }
     
-//    ∫
+
     
     func updateAvatar() {
             guard
@@ -132,7 +132,6 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
 
     
     @objc private func didTaplogoutButton() {
-        
         presenter?.showOutAlert(vc: self)
     }
 }
