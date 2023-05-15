@@ -20,8 +20,8 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     
     
     private let avatarImageView = UIImageView()
-    private let nameLabel = UILabel()
-    private var loginLabel = UILabel()
+    let nameLabel = UILabel()
+    var loginLabel = UILabel()
     private var descriptionLabel = UILabel()
     private var logoutButton = UIButton()
     private let profileService = ProfileService.shared

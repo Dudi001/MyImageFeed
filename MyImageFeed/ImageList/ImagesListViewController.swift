@@ -20,7 +20,7 @@ final class ImagesListViewController: UIViewController, ImagelistViewControllerP
 
     @IBOutlet private var tableView: UITableView!
     
-//    var photos: [Photo] = []
+
     private let imagesListService = ImagesListService.shared
     private var InfoImageObserver: NSObjectProtocol?
     
@@ -36,7 +36,7 @@ final class ImagesListViewController: UIViewController, ImagelistViewControllerP
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        photosObserver()
+
         presenter?.photosObserver()
         imagesListService.fetchPhotosNextPage()
         presenter?.updateTableView()

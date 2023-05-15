@@ -20,7 +20,6 @@ final class ImageListViewTests: XCTestCase {
                       isLiked: true)
     
     func testAvatarAlert() {
- 
         let viewController = ImagesListViewController()
         let presenter = ImageListPresenterSpy()
 
@@ -32,7 +31,6 @@ final class ImageListViewTests: XCTestCase {
     
     
     func testPhotosDownLoaded() {
-
         let presenter = ImageListPresenterSpy()
 
         presenter.photosObserver()
@@ -43,9 +41,7 @@ final class ImageListViewTests: XCTestCase {
     func testPhotosObserver() {
         let presenter = ImageListPresenterSpy()
         
-        
         presenter.photosObserver()
-        
         
         XCTAssertTrue(presenter.viewDidLoad)
     }
