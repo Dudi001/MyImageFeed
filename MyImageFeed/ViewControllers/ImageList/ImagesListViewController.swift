@@ -14,17 +14,15 @@ protocol ImagelistViewControllerProtocol: AnyObject {
     func updateTableViewAnimated(oldCount: Int, newCount: Int)
 }
 
+
 final class ImagesListViewController: UIViewController, ImagelistViewControllerProtocol {
-    var presenter: ImageListViewPresenterProtocol?
-    
-
     @IBOutlet private var tableView: UITableView!
-    
-
     private let imagesListService = ImagesListService.shared
     private var InfoImageObserver: NSObjectProtocol?
-    
     private let showSingleImageSegueIdentifier = "ShowSingleImage"
+    
+    var presenter: ImageListViewPresenterProtocol?
+    
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
@@ -35,8 +33,6 @@ final class ImagesListViewController: UIViewController, ImagelistViewControllerP
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
         presenter?.photosObserver()
         imagesListService.fetchPhotosNextPage()
         presenter?.updateTableView()
@@ -61,7 +57,7 @@ final class ImagesListViewController: UIViewController, ImagelistViewControllerP
     func configure(_ presenter: ImageListViewPresenterProtocol) {
              self.presenter = presenter
              presenter.view = self
-         }
+    }
 }
 
 
@@ -71,18 +67,16 @@ extension ImagesListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //Получаем ячейку из определенного типа
         let cell = tableView.dequeueReusableCell(
             withIdentifier: ImagesListCell.reuseIdentifier,
             for: indexPath
         )
         
-        //приводим к нужному нам типу
         guard let imageListCell = cell as? ImagesListCell else {
             print("We have a problem")
             return UITableViewCell()
         }
-        //конфигурируем и возвращаем
+
         imageListCell.delegate = self
         guard let cellPhotoURL = presenter?.photos[indexPath.row].thumbImageURL else {
             return UITableViewCell(style: .default, reuseIdentifier: "")
@@ -172,6 +166,4 @@ extension ImagesListViewController: ImagesListCellDelegate {
             }
         }
     }
-    
-    
 }

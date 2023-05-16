@@ -15,14 +15,11 @@ protocol ImageListViewPresenterProtocol: AnyObject {
     func showAlert(vc: UIViewController)
     func photosObserver()
     func updateTableView()
-    
-    
 }
 
 
 final class ImageViewPresenter: ImageListViewPresenterProtocol {
     var InfoImageObserver: NSObjectProtocol?
-    
     var photos: [Photo] = []
     var imagesListService = ImagesListService.shared
     var view: ImagelistViewControllerProtocol?
@@ -51,7 +48,6 @@ final class ImageViewPresenter: ImageListViewPresenterProtocol {
             }
     }
     
-    
     func updateTableView() {
         let oldCount = photos.count
         let newCount = imagesListService.photos.count
@@ -61,5 +57,3 @@ final class ImageViewPresenter: ImageListViewPresenterProtocol {
         }
     }
 }
-
-

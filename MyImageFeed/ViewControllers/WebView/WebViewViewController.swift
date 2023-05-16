@@ -23,13 +23,11 @@ public protocol WebViewViewControllerProtocol: AnyObject {
 
 
 final class WebViewViewController: UIViewController, WebViewViewControllerProtocol {
-
     private lazy var webView = WKWebView()
     private lazy var progressView = UIProgressView()
     private lazy var backButton = UIButton(type: .custom)
     private var estimatedProgressObservation: NSKeyValueObservation?
     var presenter: WebViewPresenterProtocol?
-    
     weak var delegate: WebViewViewControllerDelegate?
     
     
@@ -70,9 +68,6 @@ final class WebViewViewController: UIViewController, WebViewViewControllerProtoc
     func setProgressHidden(_ isHidden: Bool) {
         progressView.isHidden = isHidden
     }
-    
-    
-    
 }
 
 
@@ -88,7 +83,6 @@ extension WebViewViewController {
         
         progressView.tintColor = Resourses.Colors.black
     }
-    
     
     private func addConstraintforItems() {
         NSLayoutConstraint.activate([
@@ -149,4 +143,3 @@ extension WebViewViewController: WKNavigationDelegate {
        }
     }
 }
-

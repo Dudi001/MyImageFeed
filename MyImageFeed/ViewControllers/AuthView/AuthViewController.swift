@@ -11,10 +11,8 @@ protocol AuthViewDelegate: AnyObject {
 }
 
 final class AuthViewController: UIViewController {
-    
     private lazy var loginButton = UIButton()
     private lazy var imageLogo =  UIImageView()
-    
     weak var delegate: AuthViewDelegate?
     
     
@@ -25,6 +23,7 @@ final class AuthViewController: UIViewController {
         addView()
         addConstraintForItem()
     }
+    
     
     private func configItem() {
         view.backgroundColor = Resourses.Colors.black
@@ -57,7 +56,6 @@ final class AuthViewController: UIViewController {
     private func addView() {
         [imageLogo, loginButton].forEach(self.view.setupView)
     }
-    
     
     @objc private func buttonTapped() {
         let webViewController = WebViewViewController()

@@ -12,17 +12,18 @@ import ProgressHUD
 final class SplashViewController: UIViewController {
     private var isFirstAppear = true
     private let splashLogo = UIImageView()
-    
     private let oauth2Service = OAuth2Service()
     private let oauth2TokenStorage = OAuth2TokenStorage()
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addView()
         setupSplashLogo()
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -37,14 +38,17 @@ final class SplashViewController: UIViewController {
         }
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
     }
     
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
+    
     
     private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
@@ -52,6 +56,7 @@ final class SplashViewController: UIViewController {
             .instantiateViewController(withIdentifier: "TabBarViewController")
         window.rootViewController = tabBarController
     }
+    
     
     private func swithToAuthViewController() {
         let authViewController = AuthViewController()
@@ -83,7 +88,6 @@ extension SplashViewController: AuthViewDelegate {
             self.fetchOAuthToken(code)
         }
     }
-    
     
     private func fetchOAuthToken(_ code: String) {
         oauth2Service.fetchOAuthToken(code) { [weak self] result in
@@ -137,6 +141,5 @@ extension SplashViewController {
             splashLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             splashLogo.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        
     }
 }

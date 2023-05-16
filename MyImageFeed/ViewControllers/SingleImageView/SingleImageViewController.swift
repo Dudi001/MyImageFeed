@@ -22,6 +22,7 @@ final class SingleImageViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var imageView: UIImageView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.minimumZoomScale = 0.1
@@ -29,7 +30,7 @@ final class SingleImageViewController: UIViewController {
         showImage(largeURL: urlImage!)
     }
     
-
+    
     @IBAction private func didTapBackButton() {
         dismiss(animated: true, completion: nil)
     }
@@ -75,7 +76,7 @@ extension SingleImageViewController {
         let imageView = UIImageView()
         UIBlockingProgressHUD.show()
         imageView.kf.setImage(with: largeURL,
-                                    placeholder: UIImage(named: "placeholder")) { [weak self] result in
+                              placeholder: UIImage(named: "placeholder")) { [weak self] result in
             UIBlockingProgressHUD.dismiss()
             guard let self else {return}
             switch result {

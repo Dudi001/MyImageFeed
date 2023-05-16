@@ -15,13 +15,13 @@ protocol ProfileViewControllerProtocol: AnyObject {
     func updateAvatar()
 }
 
+
 final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
     var presenter: ProfileViewPresenterProtocol?
     
-    
-    private let avatarImageView = UIImageView()
     let nameLabel = UILabel()
     var loginLabel = UILabel()
+    private let avatarImageView = UIImageView()
     private var descriptionLabel = UILabel()
     private var logoutButton = UIButton()
     private let profileService = ProfileService.shared
@@ -43,7 +43,6 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
         
     }
     
-
     
     func updateAvatar() {
             guard
@@ -130,7 +129,6 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     }
     
 
-    
     @objc private func didTaplogoutButton() {
         presenter?.showOutAlert(vc: self)
     }

@@ -14,11 +14,9 @@ final class ImagesListService {
     
     private var lastLoadedPage: Int?
     private let urlSession = URLSession.shared
-    
     static let DidChangeNotification = Notification.Name(rawValue: "ImagesListServiceDidChange")
     private var task: URLSessionTask?
     private var likeTask: URLSessionTask?
-    
     private let dateFormatter = ISO8601DateFormatter()
     
     func fetchPhotosNextPage() {
