@@ -24,9 +24,9 @@ final class OAuth2Service {
     private func authTokenRequest(code: String) -> URLRequest {
         URLRequest.makeHTTPRequest(
             path: "/oauth/token"
-            + "?client_id=\(UnsplashParam.accessKey)"
-            + "&&client_secret=\(UnsplashParam.secretKey)"
-            + "&&redirect_uri=\(UnsplashParam.redirectURI)"
+            + "?client_id=\(AuthConfiguration.standard.accessKey)"
+            + "&&client_secret=\(AuthConfiguration.standard.secretKey)"
+            + "&&redirect_uri=\(AuthConfiguration.standard.redirectURI)"
             + "&&code=\(code)"
             + "&&grant_type=authorization_code",
             httpMethod: "POST",

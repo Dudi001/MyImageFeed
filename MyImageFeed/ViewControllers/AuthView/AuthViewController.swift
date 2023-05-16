@@ -11,10 +11,8 @@ protocol AuthViewDelegate: AnyObject {
 }
 
 final class AuthViewController: UIViewController {
-    
     private lazy var loginButton = UIButton()
     private lazy var imageLogo =  UIImageView()
-    
     weak var delegate: AuthViewDelegate?
     
     
@@ -26,6 +24,7 @@ final class AuthViewController: UIViewController {
         addConstraintForItem()
     }
     
+    
     private func configItem() {
         view.backgroundColor = Resourses.Colors.black
         
@@ -36,6 +35,7 @@ final class AuthViewController: UIViewController {
         loginButton.layer.cornerRadius = 16
         
         loginButton.setTitle("Войти", for: .normal)
+        loginButton.accessibilityIdentifier = "AuthenticateButton"
         loginButton.setTitleColor(Resourses.Colors.black, for: .normal)
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
@@ -57,11 +57,14 @@ final class AuthViewController: UIViewController {
         [imageLogo, loginButton].forEach(self.view.setupView)
     }
     
-    
     @objc private func buttonTapped() {
         let webViewController = WebViewViewController()
+        let authHelper = AuthHelper()
+        let webViewPresenter = WebViewPresenter(authHelper: authHelper)
         webViewController.modalPresentationStyle = .overFullScreen
         webViewController.delegate = self
+        webViewController.presenter = webViewPresenter
+        webViewPresenter.view = webViewController
         present(webViewController, animated:  true)
     }
 }

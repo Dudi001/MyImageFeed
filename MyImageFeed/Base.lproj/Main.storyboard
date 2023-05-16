@@ -39,6 +39,7 @@
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKY-Ms-OSh">
                                                     <rect key="frame" x="356" y="4" width="42" height="42"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="LikeButton"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="NoActiveLike">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -170,6 +171,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5X-Sv-KT8" userLabel="BackButton">
                                 <rect key="frame" x="8" y="56" width="48" height="48"/>
+                                <accessibility key="accessibilityConfiguration" identifier="BackButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="cF3-AT-Qu3"/>
                                     <constraint firstAttribute="height" constant="48" id="sv7-cR-gxa"/>

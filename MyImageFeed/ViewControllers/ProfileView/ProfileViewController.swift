@@ -9,11 +9,19 @@ import UIKit
 import Kingfisher
 import WebKit
 
-final class ProfileViewController: UIViewController {
+
+protocol ProfileViewControllerProtocol: AnyObject {
+    var presenter: ProfileViewPresenterProtocol? { get set }
+    func updateAvatar()
+}
+
+
+final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
+    var presenter: ProfileViewPresenterProtocol?
     
+    let nameLabel = UILabel()
+    var loginLabel = UILabel()
     private let avatarImageView = UIImageView()
-    private let nameLabel = UILabel()
-    private var loginLabel = UILabel()
     private var descriptionLabel = UILabel()
     private var logoutButton = UIButton()
     private let profileService = ProfileService.shared
@@ -31,22 +39,12 @@ final class ProfileViewController: UIViewController {
         setupLogoutButton()
         updateProfile()
         updateAvatar()
-        addObserverProfileImageService()
+        presenter?.addObserverProfileImageService()
         
     }
     
-    private func addObserverProfileImageService() {
-        profileImageServiceObserver = NotificationCenter.default.addObserver(
-            forName: ProfileImageService.DidChangeNotification,
-            object: nil,
-            queue: .main) { [weak self] _ in
-                guard let self = self else { return }
-                self.updateAvatar()
-            }
-        
-    }
     
-    private func updateAvatar() {
+    func updateAvatar() {
             guard
                 let profileImageURL = ProfileImageService.shared.avatarURL,
                 let url = URL(string: profileImageURL)
@@ -120,6 +118,7 @@ final class ProfileViewController: UIViewController {
     private func setupLogoutButton() {
         logoutButton.setImage(Resourses.Images.Profile.logOut, for: .normal)
         logoutButton.addTarget(self, action: #selector(didTaplogoutButton), for: .touchUpInside)
+        logoutButton.accessibilityIdentifier = "LogoutButton"
         
         NSLayoutConstraint.activate([
             logoutButton.heightAnchor.constraint(equalToConstant: 22),
@@ -129,43 +128,9 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
-    private func showAuthView() {
-        let authViewController = AuthViewController()
-        authViewController.modalPresentationStyle = .fullScreen
-        present(authViewController, animated: true)
-    }
-    
-    private func cleanCookie() {
-       HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
-       WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
-          records.forEach { record in
-             WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
-          }
-       }
-    }
-    
-    private func showOutAlert() {
-        let alert = UIAlertController(
-            title: "Уже уходите?",
-            message: "Вы уверенены?",
-            preferredStyle: .alert)
-        
-        let actionYes = UIAlertAction(title: "Да", style: .default){[weak self] _ in
-            OAuth2TokenStorage().deleteToken()
-            self?.cleanCookie()
-            self?.showAuthView()
 
-        }
-        let actionNo = UIAlertAction(title: "Нет", style: .default)
-        
-        alert.addAction(actionYes)
-        alert.addAction(actionNo)
-        
-        present(alert, animated: true )
-    }
-    
     @objc private func didTaplogoutButton() {
-        showOutAlert()
+        presenter?.showOutAlert(vc: self)
     }
 }
 
